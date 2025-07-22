@@ -1,0 +1,75 @@
+Create a simple, professional, and responsive one-page CPA bridge landing page designed to pre-sell the Champion Auto Insurance offer and drive users to the affiliate offer link (placeholder for now).
+
+---
+
+🎯 GOAL:
+The page's ONLY purpose is to convince visitors to click the CTA button and go to the affiliate link (which will be added later). No signups, no phone numbers, no extra distractions.
+
+---
+
+🧱 STRUCTURE:
+
+1. **Clean Header (Optional)**:
+   - Minimal or no header. Just focus user attention on the hero section.
+
+2. **Hero Section (Above the Fold):**
+   - Big, bold headline:
+     > “Unlock Lower Auto Insurance Rates Today”
+   - Subheadline:
+     > “Compare and Save in Less Than 60 Seconds”
+   - Visual: Show a clean, modern car image or confident driver.
+   - CTA Button:
+     > **“Get My Free Quote”**
+     - Button link should be a placeholder like `#` or `/go`
+     - Later to be replaced with actual affiliate link.
+
+3. **Value Section:**
+   - 3 bullet points with icons:
+     - ✅ Compare multiple providers in seconds
+     - ✅ No hidden fees, no obligations
+     - ✅ Save hundreds on your next premium
+
+4. **Visual Section:**
+   - Another image or background banner of a highway, car, or happy couple by a vehicle (feel-good imagery).
+
+5. **CTA Section (Reinforcement):**
+   - Short text:
+     > “Why overpay? Get your free quote now.”
+   - Button:
+     > “Start Saving” → same placeholder link
+
+6. **Footer:**
+   - Small text disclaimer:
+     > “This site is a promotional partner. We may receive compensation from Champion Auto Insurance.”
+
+---
+
+🎨 DESIGN STYLE:
+
+- **Color Theme**: Blue (#007BFF), White, Light Gray
+- **Fonts**: Use Google Fonts like Open Sans or Inter
+- **Layout**: Mobile-first, fast-loading, clean white space
+- **Button**: Bold, animated hover effect (slight glow or bounce)
+
+---
+
+🛠 TECHNICAL:
+
+- Use HTML, CSS, and minimal JavaScript
+- No external libraries unless using TailwindCSS or Bootstrap for layout simplicity
+- Images should be optimized for speed
+- Add meta title: “Compare Auto Insurance – Save Fast with Champion”
+- Add meta description: “Get your free auto insurance quote and compare top rates in under a minute.”
+
+---
+
+💡 EXTRAS (Optional):
+
+- Include a fake loading animation or progress bar to suggest urgency (“Calculating rates…”)
+- Favicon placeholder
+- Clean and ready for hosting via Replit’s deployment tools
+
+---
+
+🚀 Final Note:
+Do not include any contact forms, phone numbers, or logos from Champion. This is a CPA bridge page ONLY. When complete, I will insert the affiliate link where the CTA buttons are currently pointing.

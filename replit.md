@@ -16,13 +16,16 @@ Preferred communication style: Simple, everyday language.
 - **Routing**: Wouter for lightweight client-side routing
 - **State Management**: TanStack Query for server state management
 - **Build Tool**: Vite for fast development and optimized builds
+- **Analytics**: Real-time visitor tracking with session management
 
 ### Backend Architecture
 - **Runtime**: Node.js with Express.js framework
 - **Language**: TypeScript with ES modules
-- **Database ORM**: Drizzle ORM configured for PostgreSQL
+- **Database**: PostgreSQL with Drizzle ORM
+- **Database Tables**: Users, visitors, click_events, leads for comprehensive analytics
 - **Session Management**: Uses connect-pg-simple for PostgreSQL session storage
 - **Development**: Hot reload with tsx and Vite integration
+- **API Routes**: RESTful endpoints for tracking visitor analytics and conversions
 
 ## Key Components
 
@@ -41,9 +44,12 @@ The main landing page (`client/src/pages/home.tsx`) follows a conversion-optimiz
 - **Animation**: CSS transitions and scroll-triggered animations
 
 ### Database Schema
-- **Users Table**: Basic user management with username/password fields
-- **Drizzle Configuration**: PostgreSQL dialect with migrations support
-- **Storage Interface**: Abstracted storage layer with in-memory fallback
+- **Users Table**: Basic user management with username/password and timestamp fields
+- **Visitors Table**: Session tracking with IP, user agent, referrer, and landing page data
+- **Click Events Table**: CTA click tracking with types (hero_cta, secondary_cta, urgency_cta)
+- **Leads Table**: Conversion tracking with email, zip code, and conversion values
+- **Drizzle Configuration**: PostgreSQL dialect with automated schema migrations
+- **Storage Interface**: DatabaseStorage class implementing comprehensive analytics methods
 
 ## Data Flow
 
@@ -93,9 +99,18 @@ The main landing page (`client/src/pages/home.tsx`) follows a conversion-optimiz
 - **Performance**: Optimized builds with code splitting and asset optimization
 - **Scalability**: Stateless server design allows for horizontal scaling
 
-### Affiliate Integration
-The application is structured to easily integrate affiliate links by:
-1. Replacing placeholder CTA handlers with actual affiliate URLs
-2. Adding tracking parameters to monitor conversion rates
-3. Implementing user analytics for optimization insights
-4. Supporting A/B testing for different landing page variations
+### Affiliate Integration & Analytics
+The application now includes comprehensive tracking and is ready for affiliate integration:
+1. **Real-time Analytics**: PostgreSQL database tracks visitors, clicks, and conversions
+2. **CTA Tracking**: All button clicks are categorized and monitored (hero, secondary, urgency)
+3. **Conversion Funnel**: Visitor → Click → Lead pipeline with conversion rate calculations
+4. **Analytics Dashboard**: Live performance metrics accessible at /analytics route
+5. **Session Management**: Unique session IDs for accurate user journey tracking
+6. **Ready for Affiliate URLs**: Placeholder CTAs can be replaced with Champion Auto Insurance links
+
+### Recent Changes (January 2025)
+- ✓ Added PostgreSQL database with comprehensive analytics schema
+- ✓ Implemented real-time visitor, click, and lead tracking
+- ✓ Created analytics dashboard with conversion metrics
+- ✓ Enhanced CPA landing page with urgency messaging and social proof
+- ✓ Integrated database storage layer replacing in-memory storage

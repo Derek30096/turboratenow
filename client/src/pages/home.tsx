@@ -3,11 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { LoadingBar } from "@/components/ui/loading-bar";
 import { CheckCircle, Shield, DollarSign } from "lucide-react";
+import { trackVisitor, trackCTAClick, trackLead } from "@/lib/analytics";
 
 export default function Home() {
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
+    // Track page visit
+    trackVisitor();
+    
     observerRef.current = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -26,10 +30,16 @@ export default function Home() {
     };
   }, []);
 
-  const handleCTAClick = () => {
+  const handleCTAClick = (ctaType: string, ctaText: string) => {
+    // Track the CTA click for analytics
+    trackCTAClick(ctaType, ctaText);
+    
+    // Track potential lead (since this is a bridge page, clicking CTA indicates intent)
+    trackLead();
+    
     // TODO: Replace with actual affiliate link
-    console.log('CTA clicked - redirect to affiliate link');
-    // window.location.href = 'AFFILIATE_LINK_HERE';
+    console.log(`CTA clicked: ${ctaType} - ${ctaText}`);
+    // window.location.href = 'https://championautoinsurance.com/affiliate-link';
   };
 
   return (
@@ -71,7 +81,7 @@ export default function Home() {
               <LoadingBar className="mx-auto md:mx-0" />
               
               <Button 
-                onClick={handleCTAClick}
+                onClick={() => handleCTAClick('hero_cta', '🚨 Get My Free Quote - Save $437+ Now!')}
                 className="cta-glow bg-orange-500 hover:bg-orange-600 text-white font-bold py-5 px-10 rounded-full text-xl shadow-lg h-auto pulse mb-4"
               >
                 🚨 Get My Free Quote - Save $437+ Now!
@@ -223,7 +233,7 @@ export default function Home() {
           </p>
           
           <Button 
-            onClick={handleCTAClick}
+            onClick={() => handleCTAClick('secondary_cta', '⚡ Get My Instant Quote - Save $437+')}
             className="cta-glow bg-orange-500 hover:bg-orange-600 text-white font-bold py-5 px-12 rounded-full text-2xl shadow-lg h-auto animate-bounce mb-4"
           >
             ⚡ Get My Instant Quote - Save $437+
@@ -261,7 +271,7 @@ export default function Home() {
               </div>
             </div>
             <Button 
-              onClick={handleCTAClick}
+              onClick={() => handleCTAClick('urgency_cta', '🔒 Lock In My Low Rate Now')}
               className="cta-glow bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg h-auto mt-6"
             >
               🔒 Lock In My Low Rate Now
@@ -280,7 +290,8 @@ export default function Home() {
             <p className="text-xs text-gray-500">
               © 2025 Auto Insurance Comparison. All rights reserved. | 
               <a href="#" className="hover:text-white transition-colors ml-1">Privacy Policy</a> | 
-              <a href="#" className="hover:text-white transition-colors ml-1">Terms of Service</a>
+              <a href="#" className="hover:text-white transition-colors ml-1">Terms of Service</a> | 
+              <a href="/analytics" className="hover:text-white transition-colors ml-1">Analytics</a>
             </p>
           </div>
         </div>

@@ -1,0 +1,101 @@
+# Auto Insurance Landing Page
+
+## Overview
+
+This is a single-page CPA (Cost Per Action) bridge landing page designed to pre-sell Champion Auto Insurance offers. The application is built as a full-stack web application using React for the frontend and Express.js for the backend, with a focus on conversion optimization and user engagement.
+
+## User Preferences
+
+Preferred communication style: Simple, everyday language.
+
+## System Architecture
+
+### Frontend Architecture
+- **Framework**: React 18 with TypeScript
+- **Styling**: Tailwind CSS with shadcn/ui component library
+- **Routing**: Wouter for lightweight client-side routing
+- **State Management**: TanStack Query for server state management
+- **Build Tool**: Vite for fast development and optimized builds
+
+### Backend Architecture
+- **Runtime**: Node.js with Express.js framework
+- **Language**: TypeScript with ES modules
+- **Database ORM**: Drizzle ORM configured for PostgreSQL
+- **Session Management**: Uses connect-pg-simple for PostgreSQL session storage
+- **Development**: Hot reload with tsx and Vite integration
+
+## Key Components
+
+### Landing Page Structure
+The main landing page (`client/src/pages/home.tsx`) follows a conversion-optimized structure:
+1. **Hero Section**: Primary headline, subheadline, and main CTA button
+2. **Value Proposition**: Three key benefits with icons
+3. **Visual Section**: Trust-building imagery
+4. **Secondary CTA**: Reinforcement section with additional call-to-action
+5. **Footer**: Disclaimer and legal text
+
+### UI Component System
+- **shadcn/ui**: Comprehensive component library with Radix UI primitives
+- **Custom Components**: Specialized components like `LoadingBar` for engagement
+- **Responsive Design**: Mobile-first approach with Tailwind breakpoints
+- **Animation**: CSS transitions and scroll-triggered animations
+
+### Database Schema
+- **Users Table**: Basic user management with username/password fields
+- **Drizzle Configuration**: PostgreSQL dialect with migrations support
+- **Storage Interface**: Abstracted storage layer with in-memory fallback
+
+## Data Flow
+
+### Client-Side Flow
+1. User lands on homepage with immediate visual impact
+2. Intersection Observer triggers animations as user scrolls
+3. CTA buttons currently log interactions (placeholder for affiliate redirection)
+4. React Query manages any future API state requirements
+
+### Server-Side Flow
+1. Express server handles static file serving and API routes
+2. Vite middleware provides hot reload in development
+3. Database operations abstracted through storage interface
+4. Session management ready for user tracking if needed
+
+## External Dependencies
+
+### Core Dependencies
+- **React Ecosystem**: React, React DOM, React Query
+- **UI Framework**: Radix UI primitives, Tailwind CSS, shadcn/ui
+- **Database**: Drizzle ORM, @neondatabase/serverless, PostgreSQL
+- **Development**: Vite, TypeScript, PostCSS
+
+### Styling and Theming
+- **Fonts**: Inter font family from Google Fonts
+- **Color Scheme**: Blue primary (#007BFF), neutral grays, success green
+- **CSS Variables**: Custom properties for consistent theming
+- **Responsive**: Mobile-first design with tablet/desktop breakpoints
+
+## Deployment Strategy
+
+### Build Process
+1. **Frontend Build**: Vite builds React app to `dist/public`
+2. **Backend Build**: esbuild bundles server to `dist/index.js`
+3. **Database Migration**: Drizzle kit handles schema migrations
+4. **Environment Variables**: DATABASE_URL required for PostgreSQL connection
+
+### Development Environment
+- **Hot Reload**: Vite development server with Express integration
+- **Type Safety**: Full TypeScript coverage across frontend and backend
+- **Database**: Can use Neon PostgreSQL or local PostgreSQL instance
+- **Replit Integration**: Configured with replit-specific plugins and banners
+
+### Production Considerations
+- **Static Serving**: Express serves built React application
+- **Database**: Requires PostgreSQL database URL in production
+- **Performance**: Optimized builds with code splitting and asset optimization
+- **Scalability**: Stateless server design allows for horizontal scaling
+
+### Affiliate Integration
+The application is structured to easily integrate affiliate links by:
+1. Replacing placeholder CTA handlers with actual affiliate URLs
+2. Adding tracking parameters to monitor conversion rates
+3. Implementing user analytics for optimization insights
+4. Supporting A/B testing for different landing page variations

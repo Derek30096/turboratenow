@@ -12,8 +12,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/analytics" component={Analytics} />
-      <Route path="/tracking" component={ProtectedTracking} />
+      <Route path="/admin/dashboard" component={ProtectedTracking} />
       <Route component={NotFound} />
     </Switch>
   );

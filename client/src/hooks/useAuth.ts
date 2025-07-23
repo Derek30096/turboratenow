@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const DASHBOARD_PASSWORD = "AutoInsure2025!"; // Change this to your secure password
+const DASHBOARD_PASSWORD = "TrackX$9K2mP7!"; // Obscured secure password
 const AUTH_KEY = "dashboard_authenticated";
 
 export function useAuth() {

@@ -44,20 +44,20 @@ export default function Analytics() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
+      <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        <div className="mb-6 sm:mb-8">
           <Link href="/">
-            <Button variant="outline" className="mb-4">
+            <Button variant="outline" className="mb-4 text-sm sm:text-base">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Landing Page
             </Button>
           </Link>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">CPA Landing Page Analytics</h1>
-          <p className="text-gray-600">Real-time performance metrics for Champion Auto Insurance bridge page</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">CPA Landing Page Analytics</h1>
+          <p className="text-sm sm:text-base text-gray-600">Real-time performance metrics for Champion Auto Insurance bridge page</p>
         </div>
 
         {analytics && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Total Visitors</CardTitle>
@@ -112,7 +112,7 @@ export default function Analytics() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           <Card>
             <CardHeader>
               <CardTitle>Performance Summary</CardTitle>

@@ -70,11 +70,26 @@
 @layer components {
   .cta-glow {
     @apply transition-all duration-300 transform;
+    /* Better touch target size for mobile */
+    min-height: 44px;
+    touch-action: manipulation;
   }
   
   .cta-glow:hover {
     box-shadow: 0 0 20px rgba(0, 123, 255, 0.4);
     transform: translateY(-1px) scale(1.05);
+  }
+  
+  /* Mobile-specific optimizations */
+  @media (max-width: 640px) {
+    .cta-glow:active {
+      transform: scale(0.98);
+    }
+    
+    .cta-glow:hover {
+      transform: none; /* Disable hover effects on mobile */
+      box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+    }
   }
   
   .loading-bar {

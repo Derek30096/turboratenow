@@ -13,7 +13,8 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/admin/dashboard" component={ProtectedTracking} />
-      <Route component={NotFound} />
+      <Route path="/tracking" component={NotFound} />
+      <Route path="*" component={NotFound} />
     </Switch>
   );
 }

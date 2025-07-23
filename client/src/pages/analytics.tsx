@@ -52,8 +52,8 @@ export default function Analytics() {
               Back to Landing Page
             </Button>
           </Link>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">CPA Landing Page Analytics</h1>
-          <p className="text-sm sm:text-base text-gray-600">Real-time performance metrics for Champion Auto Insurance bridge page</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">TrackPro Analytics Engine</h1>
+          <p className="text-sm sm:text-base text-gray-600">Professional CPA tracking and conversion analytics</p>
         </div>
 
         {analytics && (

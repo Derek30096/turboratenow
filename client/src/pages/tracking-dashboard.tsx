@@ -134,8 +134,8 @@ export default function TrackingDashboard() {
         <div className="mb-4 sm:mb-8">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-4">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Analytics Dashboard</h1>
-              <p className="text-sm sm:text-base text-gray-600">Professional tracking as good as ClickMagick</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">TrackPro Analytics Dashboard</h1>
+              <p className="text-sm sm:text-base text-gray-600">Professional tracking engine for CPA campaigns</p>
             </div>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
               <div className="flex items-center gap-2">

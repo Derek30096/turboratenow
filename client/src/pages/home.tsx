@@ -37,9 +37,9 @@ export default function Home() {
     // Track potential lead (since this is a bridge page, clicking CTA indicates intent)
     trackLead();
     
-    // TODO: Replace with actual affiliate link
+    // Redirect to MaxBounty affiliate link
     console.log(`CTA clicked: ${ctaType} - ${ctaText}`);
-    // window.location.href = 'https://championautoinsurance.com/affiliate-link';
+    window.location.href = 'https://afflat3e1.com/trk/lnk/E9FE846C-D650-4A23-A71F-1A020485FDAD/?o=22134&c=918277&a=713051&k=BD87E19173921A7698931850BC9E82E2&l=22980';
   };
 
   return (

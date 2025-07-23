@@ -4,13 +4,16 @@ import { Card, CardContent } from "@/components/ui/card";
 import { LoadingBar } from "@/components/ui/loading-bar";
 import { RedirectLoading } from "@/components/ui/redirect-loading";
 import { CheckCircle, Shield, DollarSign } from "lucide-react";
-import { trackVisitor, trackCTAClick, trackLead } from "@/lib/analytics";
+import { trackVisitor, trackCTAClick, trackLead, trackRedirect, initializeAdvancedTracking } from "@/lib/advanced-analytics";
 
 export default function Home() {
   const observerRef = useRef<IntersectionObserver | null>(null);
   const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => {
+    // Initialize advanced tracking
+    initializeAdvancedTracking();
+    
     // Track page visit
     trackVisitor();
     
@@ -45,6 +48,9 @@ export default function Home() {
   };
 
   const handleRedirectComplete = () => {
+    // Track the redirect event
+    trackRedirect();
+    
     // Redirect to MaxBounty affiliate link after loading screen
     window.location.href = 'https://afflat3e1.com/trk/lnk/E9FE846C-D650-4A23-A71F-1A020485FDAD/?o=22134&c=918277&a=713051&k=BD87E19173921A7698931850BC9E82E2&l=22980';
   };

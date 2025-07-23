@@ -1,12 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { LoadingBar } from "@/components/ui/loading-bar";
+import { RedirectLoading } from "@/components/ui/redirect-loading";
 import { CheckCircle, Shield, DollarSign } from "lucide-react";
 import { trackVisitor, trackCTAClick, trackLead } from "@/lib/analytics";
 
 export default function Home() {
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => {
     // Track page visit
@@ -37,13 +39,21 @@ export default function Home() {
     // Track potential lead (since this is a bridge page, clicking CTA indicates intent)
     trackLead();
     
-    // Redirect to MaxBounty affiliate link
+    // Show loading screen before redirect
     console.log(`CTA clicked: ${ctaType} - ${ctaText}`);
+    setShowLoading(true);
+  };
+
+  const handleRedirectComplete = () => {
+    // Redirect to MaxBounty affiliate link after loading screen
     window.location.href = 'https://afflat3e1.com/trk/lnk/E9FE846C-D650-4A23-A71F-1A020485FDAD/?o=22134&c=918277&a=713051&k=BD87E19173921A7698931850BC9E82E2&l=22980';
   };
 
   return (
     <div className="min-h-screen bg-white">
+      {showLoading && (
+        <RedirectLoading onComplete={handleRedirectComplete} />
+      )}
       {/* Header - Minimal with urgency */}
       <header className="bg-gradient-to-r from-red-600 to-red-700 text-white py-1.5 px-1">
         <div className="mx-auto max-w-7xl px-2 sm:px-4">

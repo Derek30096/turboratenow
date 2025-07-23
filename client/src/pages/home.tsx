@@ -45,35 +45,35 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header - Minimal with urgency */}
-      <header className="bg-gradient-to-r from-red-600 to-red-700 text-white py-2 px-2">
-        <div className="container mx-auto px-2 sm:px-4">
+      <header className="bg-gradient-to-r from-red-600 to-red-700 text-white py-1.5 px-1">
+        <div className="mx-auto max-w-7xl px-2 sm:px-4">
           <div className="flex justify-center items-center">
-            <div className="text-xs sm:text-sm font-semibold animate-pulse text-center">
-              ⚡ Limited Time: Insurance Rates Going Up - Compare NOW & Lock In Savings!
+            <div className="text-xs font-semibold animate-pulse text-center leading-tight">
+              ⚡ Limited Time: Insurance Rates Going Up - Compare NOW!
             </div>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[var(--primary-blue)] to-blue-600 text-white py-12 sm:py-16 md:py-24">
-        <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="text-center md:text-left">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
+      <section className="bg-gradient-to-br from-[var(--primary-blue)] to-blue-600 text-white py-8 sm:py-12 md:py-16 lg:py-24">
+        <div className="container mx-auto px-3 sm:px-4 md:px-6 max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
+            <div className="text-center md:text-left order-2 md:order-1">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight">
                 Most Drivers Overpay $437/Year on Auto Insurance
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl mb-4 text-blue-100 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-4 text-blue-100 leading-relaxed">
                 Compare Top Providers & Save Big in Under 60 Seconds
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-2 sm:gap-4 mb-6">
-                <div className="flex items-center bg-white/10 rounded-full px-3 sm:px-4 py-2">
-                  <span className="text-yellow-300 mr-2 text-sm">⭐⭐⭐⭐⭐</span>
-                  <span className="text-xs sm:text-sm">4.8/5 (2,847 Reviews)</span>
+              <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-2 sm:gap-3 mb-4 sm:mb-6">
+                <div className="flex items-center bg-white/10 rounded-full px-2 sm:px-3 md:px-4 py-1.5 sm:py-2">
+                  <span className="text-yellow-300 mr-1 sm:mr-2 text-xs sm:text-sm">⭐⭐⭐⭐⭐</span>
+                  <span className="text-xs">4.8/5 (2,847 Reviews)</span>
                 </div>
-                <div className="flex items-center bg-white/10 rounded-full px-3 sm:px-4 py-2">
-                  <span className="text-green-300 mr-2">✓</span>
-                  <span className="text-xs sm:text-sm">2M+ Happy Customers</span>
+                <div className="flex items-center bg-white/10 rounded-full px-2 sm:px-3 md:px-4 py-1.5 sm:py-2">
+                  <span className="text-green-300 mr-1 sm:mr-2">✓</span>
+                  <span className="text-xs">2M+ Happy Customers</span>
                 </div>
               </div>
               
@@ -82,20 +82,20 @@ export default function Home() {
               
               <Button 
                 onClick={() => handleCTAClick('hero_cta', '🚨 Get My Free Quote - Save $437+ Now!')}
-                className="cta-glow bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 sm:py-5 px-6 sm:px-10 rounded-full text-lg sm:text-xl shadow-lg h-auto pulse mb-4 w-full sm:w-auto"
+                className="cta-glow bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 sm:py-4 md:py-5 px-4 sm:px-6 md:px-10 rounded-full text-sm sm:text-lg md:text-xl shadow-lg h-auto pulse mb-3 sm:mb-4 w-full sm:w-auto"
               >
                 🚨 Get My Free Quote - Save $437+ Now!
               </Button>
-              <p className="text-blue-200 text-xs sm:text-sm text-center md:text-left">
+              <p className="text-blue-200 text-xs text-center md:text-left leading-relaxed px-2 sm:px-0">
                 ✓ Free • ✓ No Obligation • ✓ Instant Results • ✓ 100% Secure
               </p>
             </div>
             
-            <div className="text-center mt-8 md:mt-0">
+            <div className="text-center order-1 md:order-2 mb-4 md:mb-0">
               <img 
                 src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
                 alt="Modern car for auto insurance" 
-                className="rounded-xl shadow-2xl w-full h-auto max-w-sm sm:max-w-md mx-auto"
+                className="rounded-xl shadow-2xl w-full h-auto max-w-xs sm:max-w-sm md:max-w-md mx-auto"
               />
             </div>
           </div>

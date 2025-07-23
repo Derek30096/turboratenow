@@ -92,6 +92,31 @@
     }
   }
   
+  /* Prevent horizontal scroll on mobile */
+  @media (max-width: 640px) {
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+    }
+    
+    .container {
+      max-width: 100vw;
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+    
+    /* Ensure no elements exceed viewport width */
+    * {
+      max-width: 100vw;
+      box-sizing: border-box;
+    }
+    
+    /* Hero section specific mobile fixes */
+    section {
+      overflow-x: hidden;
+    }
+  }
+  
   .loading-bar {
     background: linear-gradient(90deg, #007BFF, #0056b3, #007BFF);
     background-size: 200% 100%;

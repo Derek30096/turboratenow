@@ -200,7 +200,8 @@ export function initializeAdvancedTracking(): void {
   // Track hover events on important elements
   document.addEventListener('mouseenter', (e) => {
     const target = e.target as HTMLElement;
-    if (target.matches('button, .cta-button, a[href*="afflat3e1.com"]')) {
+    if (target && typeof target.matches === 'function' && 
+        target.matches('button, .cta-button, a[href*="afflat3e1.com"]')) {
       trackPageEvent('hover', target.tagName.toLowerCase(), { 
         elementId: target.id || target.className 
       });
@@ -210,7 +211,8 @@ export function initializeAdvancedTracking(): void {
   // Track click coordinates for heatmap data
   document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
-    if (target.matches('button, .cta-button, a')) {
+    if (target && typeof target.matches === 'function' && 
+        target.matches('button, .cta-button, a')) {
       trackPageEvent('click', target.tagName.toLowerCase(), {
         x: e.clientX,
         y: e.clientY,

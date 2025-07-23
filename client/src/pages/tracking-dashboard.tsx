@@ -128,31 +128,32 @@ export default function TrackingDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-2 sm:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <div className="flex justify-between items-center mb-4">
+        <div className="mb-4 sm:mb-8">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Analytics Dashboard</h1>
-              <p className="text-gray-600">Professional tracking as good as ClickMagick</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Analytics Dashboard</h1>
+              <p className="text-sm sm:text-base text-gray-600">Professional tracking as good as ClickMagick</p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                 <span className="text-sm font-medium">{liveVisitors} live visitors</span>
               </div>
-              <Button onClick={createNewCampaign} className="bg-blue-600 hover:bg-blue-700">
+              <Button onClick={createNewCampaign} className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700">
                 New Campaign
               </Button>
             </div>
           </div>
 
           {/* Campaign Selector */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 overflow-x-auto pb-2">
             <Button
               variant={selectedCampaign === undefined ? "default" : "outline"}
               size="sm"
+              className="whitespace-nowrap"
               onClick={() => setSelectedCampaign(undefined)}
             >
               All Campaigns
@@ -162,6 +163,7 @@ export default function TrackingDashboard() {
                 key={campaign.id}
                 variant={selectedCampaign === campaign.id ? "default" : "outline"}
                 size="sm"
+                className="whitespace-nowrap"
                 onClick={() => setSelectedCampaign(campaign.id)}
               >
                 {campaign.name}
@@ -171,7 +173,7 @@ export default function TrackingDashboard() {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-4 sm:mb-8">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Visitors</CardTitle>
@@ -226,17 +228,17 @@ export default function TrackingDashboard() {
         </div>
 
         {/* Detailed Analytics */}
-        <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5">
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="funnel">Funnel</TabsTrigger>
-            <TabsTrigger value="visitors">Visitors</TabsTrigger>
-            <TabsTrigger value="geo">Geography</TabsTrigger>
-            <TabsTrigger value="devices">Devices</TabsTrigger>
+        <Tabs defaultValue="overview" className="space-y-3 sm:space-y-6">
+          <TabsList className="grid w-full grid-cols-5 text-xs sm:text-sm">
+            <TabsTrigger value="overview" className="px-1 sm:px-3">Overview</TabsTrigger>
+            <TabsTrigger value="funnel" className="px-1 sm:px-3">Funnel</TabsTrigger>
+            <TabsTrigger value="visitors" className="px-1 sm:px-3">Visitors</TabsTrigger>
+            <TabsTrigger value="geo" className="px-1 sm:px-3">Geography</TabsTrigger>
+            <TabsTrigger value="devices" className="px-1 sm:px-3">Devices</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="overview" className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <TabsContent value="overview" className="space-y-3 sm:space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-6">
               {/* Top Countries */}
               <Card>
                 <CardHeader>
@@ -287,7 +289,7 @@ export default function TrackingDashboard() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-blue-600">
                       {stats?.avgTimeOnPage.toFixed(0) || 0}s
@@ -311,7 +313,7 @@ export default function TrackingDashboard() {
             </Card>
           </TabsContent>
 
-          <TabsContent value="funnel" className="space-y-6">
+          <TabsContent value="funnel" className="space-y-3 sm:space-y-6">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -351,7 +353,7 @@ export default function TrackingDashboard() {
             </Card>
           </TabsContent>
 
-          <TabsContent value="visitors" className="space-y-6">
+          <TabsContent value="visitors" className="space-y-3 sm:space-y-6">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -393,7 +395,7 @@ export default function TrackingDashboard() {
             </Card>
           </TabsContent>
 
-          <TabsContent value="geo" className="space-y-6">
+          <TabsContent value="geo" className="space-y-3 sm:space-y-6">
             <Card>
               <CardHeader>
                 <CardTitle>Geographic Analytics</CardTitle>
@@ -407,7 +409,7 @@ export default function TrackingDashboard() {
             </Card>
           </TabsContent>
 
-          <TabsContent value="devices" className="space-y-6">
+          <TabsContent value="devices" className="space-y-3 sm:space-y-6">
             <Card>
               <CardHeader>
                 <CardTitle>Device & Browser Analytics</CardTitle>
@@ -416,7 +418,7 @@ export default function TrackingDashboard() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6">
                   <div>
                     <h4 className="font-medium mb-3">Top Browsers</h4>
                     <div className="space-y-2">

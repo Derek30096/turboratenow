@@ -12,6 +12,15 @@ import {
 export const router = express.Router();
 
 export function registerRoutes(app: express.Application) {
+  // Force HTTPS redirect for custom domain
+  app.use((req, res, next) => {
+    if (req.header('x-forwarded-proto') !== 'https' && process.env.NODE_ENV === 'production') {
+      res.redirect(`https://${req.header('host')}${req.url}`);
+    } else {
+      next();
+    }
+  });
+
   // Simple static landing page - NO TRACKING, NO CHARGES
   app.get('/', (req, res) => {
     res.setHeader('Content-Type', 'text/html');

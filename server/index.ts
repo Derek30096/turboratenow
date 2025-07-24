@@ -1,5 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { createServer } from "http";
+import path from "path";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
@@ -38,14 +39,22 @@ app.use((req, res, next) => {
 });
 
 export async function createAppServer() {
-  // ENHANCED DOMAIN ROUTING with logging for better debugging
+  // PRIORITY: Serve static files first  
+  app.use(express.static("dist/public"));
+  app.use(express.static("public"));
+  app.use(express.static("."));
+
+  // ENHANCED DOMAIN ROUTING with fallback routing for all domain issues
   app.use((req, res, next) => {
     console.log(`📡 REQUEST: ${req.hostname} ${req.method} ${req.path} from ${req.ip} at ${new Date().toISOString()}`);
     
     const host = req.header('host') || req.hostname;
     if (host === 'turboratenow.com' || host === 'www.turboratenow.com' || host?.includes('turboratenow')) {
-      console.log(`🌟 DOMAIN DIRECT: ${host} ${req.url}`);
-      res.setHeader('Content-Type', 'text/html');
+      console.log(`🌟 DOMAIN DIRECT: ${host} ${req.url} - Serving Champion Auto Insurance`);
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
       return res.send(`<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,6 +99,16 @@ export async function createAppServer() {
     </div>
 </body>
 </html>`);
+    }
+    next();
+  });
+
+  // Add failsafe route for turboratenow.com
+  app.get('*', (req, res, next) => {
+    const host = req.header('host') || req.hostname;
+    if (host?.includes('turboratenow')) {
+      console.log(`🎯 FAILSAFE: ${host} serving Champion Auto Insurance`);
+      return res.sendFile(path.join(process.cwd(), 'simple.html'));
     }
     next();
   });

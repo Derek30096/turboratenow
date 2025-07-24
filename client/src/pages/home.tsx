@@ -87,11 +87,10 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
             <div className="text-center md:text-left order-2 md:order-1">
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight">
-                <span className="text-white">Champion Auto Insurance</span><br/>
-                <span className="text-yellow-300">Save Up to $437/Year</span>
+                Most Drivers Overpay $437/Year on Auto Insurance
               </h1>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-4 text-blue-100 leading-relaxed">
-                Get Your Free Quote & Compare Top Rates in Under 60 Seconds
+                Compare Top Providers & Save Big in Under 60 Seconds
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-2 sm:gap-3 mb-4 sm:mb-6">
                 <div className="flex items-center bg-white/10 rounded-full px-2 sm:px-3 md:px-4 py-1.5 sm:py-2">

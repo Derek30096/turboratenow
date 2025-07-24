@@ -23,7 +23,7 @@ export function registerRoutes(app: express.Application) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Champion Auto Insurance - Get Your Free Quote Now</title>
+    <title>Most Drivers Overpay $437/Year on Auto Insurance</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Arial, sans-serif; background: white; color: black; line-height: 1.6; min-height: 100vh; }
@@ -41,8 +41,8 @@ export function registerRoutes(app: express.Application) {
 <body>
     <div class="container">
         <div class="urgent">🚨 LIMITED TIME: Insurance Rates Going Up - Compare NOW! 🚨</div>
-        <h1>Champion Auto Insurance</h1>
-        <p class="subtitle">Save Up to 40% on Your Auto Insurance - Get Your Free Quote in 2 Minutes!</p>
+        <h1>Most Drivers Overpay $437/Year on Auto Insurance</h1>
+        <p class="subtitle">Compare Top Providers & Save Big in Under 60 Seconds</p>
         <a href="https://t.maxbounty.com/54949" class="cta-button">Get Free Quote Now</a>
         <div class="benefits">
             <div class="benefit">
@@ -507,10 +507,19 @@ export function registerRoutes(app: express.Application) {
   
   // DISABLED: All API tracking routes removed to prevent charges
   // app.use('/api', router);
+  
+  // Completely disable all tracking API routes to prevent any billing charges
+  app.use('/api/*', (req, res) => {
+    console.log(`API call blocked: ${req.method} ${req.url}`);
+    res.json({ success: false, disabled: true, message: 'All tracking disabled to prevent billing charges' });
+  });
 }
 
-// Enhanced visitor tracking with device detection and geo data
+// TRACKING DISABLED - All endpoints removed to prevent billing charges
 router.post("/track/visitor", async (req: Request, res: Response) => {
+  console.log('Tracking disabled - no database operations');
+  res.json({ success: false, disabled: true });
+  return;
   try {
     const sessionId = (req as any).sessionID || `session_${Date.now()}_${Math.random()}`;
     const userAgent = req.headers['user-agent'] || '';

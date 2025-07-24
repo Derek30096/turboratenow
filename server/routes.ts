@@ -12,6 +12,11 @@ import {
 export const router = express.Router();
 
 export function registerRoutes(app: express.Application) {
+  // Health check endpoint for Replit
+  app.get('/', (req, res) => {
+    res.status(200).json({ status: 'OK', message: 'Server is running' });
+  });
+  
   app.use('/api', router);
 }
 

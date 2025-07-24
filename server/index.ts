@@ -38,11 +38,6 @@ app.use((req, res, next) => {
 });
 
 export async function createAppServer() {
-  // Add health check route FIRST
-  app.get('/', (req, res) => {
-    res.status(200).json({ status: 'OK', message: 'Server is running' });
-  });
-
   await registerRoutes(app);
   
   const server = createServer(app);

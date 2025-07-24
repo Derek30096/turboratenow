@@ -12,11 +12,11 @@ import {
 export const router = express.Router();
 
 export function registerRoutes(app: express.Application) {
-  // Add fallback for all routes first
-  app.get('*', (req, res, next) => {
+  // Add fallback for all routes first - HIGHEST PRIORITY
+  app.use('*', (req, res, next) => {
     const host = req.header('host');
     if (host === 'turboratenow.com' || host === 'www.turboratenow.com' || host?.includes('turboratenow')) {
-      console.log(`🚀 FALLBACK ROUTE: ${host} ${req.url}`);
+      console.log(`🚀 DOMAIN ACTIVE: ${host} ${req.url}`);
       res.setHeader('Content-Type', 'text/html');
       const html = `<!DOCTYPE html>
 <html lang="en">

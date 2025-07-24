@@ -62,17 +62,15 @@ export async function createAppServer() {
   return server;
 }
 
-// Development server
-if (process.env.NODE_ENV === "development") {
-  (async () => {
-    const server = await createAppServer();
-    const port = parseInt(process.env.PORT || '5000', 10);
-    server.listen({
-      port,
-      host: "0.0.0.0",
-      reusePort: true,
-    }, () => {
-      log(`serving on port ${port}`);
-    });
-  })();
-}
+// Start server (both development and production)
+(async () => {
+  const server = await createAppServer();
+  const port = parseInt(process.env.PORT || '5000', 10);
+  server.listen({
+    port,
+    host: "0.0.0.0",
+    reusePort: true,
+  }, () => {
+    log(`serving on port ${port}`);
+  });
+})();

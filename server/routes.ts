@@ -12,8 +12,8 @@ import {
 export const router = express.Router();
 
 export function registerRoutes(app: express.Application) {
-  // Health check endpoint for Replit
-  app.get('/', (req, res) => {
+  // Health check endpoint for Replit (only for production health checks)
+  app.get('/health', (req, res) => {
     res.status(200).json({ status: 'OK', message: 'Server is running' });
   });
   

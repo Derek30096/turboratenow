@@ -12,12 +12,10 @@ import {
 export const router = express.Router();
 
 export function registerRoutes(app: express.Application) {
-  // Direct working landing page - override everything
+  // Simple static landing page - NO TRACKING, NO CHARGES
   app.get('/', (req, res) => {
     res.setHeader('Content-Type', 'text/html');
-    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
+    res.setHeader('Cache-Control', 'public, max-age=3600');
     res.send(`<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -162,7 +160,8 @@ export function registerRoutes(app: express.Application) {
     res.status(200).json({ status: 'OK', message: 'Server is running' });
   });
   
-  app.use('/api', router);
+  // DISABLED: All API tracking routes removed to prevent charges
+  // app.use('/api', router);
 }
 
 // Enhanced visitor tracking with device detection and geo data

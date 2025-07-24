@@ -42,13 +42,15 @@ export async function trackVisitor(campaignId?: number): Promise<any> {
     const result = await response.json();
     if (result.success && result.visitor) {
       visitorId = result.visitor.id;
-      localStorage.setItem('visitor_id', visitorId.toString());
+      if (visitorId) {
+        localStorage.setItem('visitor_id', visitorId.toString());
+      }
     }
     
     return result;
   } catch (error) {
     console.error('Error tracking visitor:', error);
-    return null;
+    return { success: false, error: error };
   }
 }
 
@@ -82,7 +84,7 @@ export async function trackCTAClick(ctaType: string, ctaText: string, elementId?
     return await response.json();
   } catch (error) {
     console.error('Error tracking CTA click:', error);
-    return null;
+    return { success: false, error: error };
   }
 }
 
@@ -115,7 +117,7 @@ export async function trackLead(email?: string, zipCode?: string, conversionValu
     return await response.json();
   } catch (error) {
     console.error('Error tracking lead:', error);
-    return null;
+    return { success: false, error: error };
   }
 }
 
@@ -146,7 +148,7 @@ export async function trackPageEvent(eventType: string, element?: string, data?:
     return await response.json();
   } catch (error) {
     console.error('Error tracking page event:', error);
-    return null;
+    return { success: false, error: error };
   }
 }
 

@@ -11,24 +11,28 @@ export default function Home() {
   const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => {
-    // Initialize advanced tracking
-    initializeAdvancedTracking();
-    
-    // Track page visit
-    trackVisitor();
-    
-    observerRef.current = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+    try {
+      // Initialize advanced tracking
+      initializeAdvancedTracking();
+      
+      // Track page visit
+      trackVisitor().catch(err => console.log('Tracking init error:', err));
+      
+      observerRef.current = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
       });
-    });
 
-    // Observe all fade-in elements
-    document.querySelectorAll('.fade-in-up').forEach(el => {
-      observerRef.current?.observe(el);
-    });
+      // Observe all fade-in elements
+      document.querySelectorAll('.fade-in-up').forEach(el => {
+        observerRef.current?.observe(el);
+      });
+    } catch (error) {
+      console.log('Initialization error:', error);
+    }
 
     return () => {
       observerRef.current?.disconnect();
@@ -36,20 +40,30 @@ export default function Home() {
   }, []);
 
   const handleCTAClick = (ctaType: string, ctaText: string) => {
-    // Track the CTA click for analytics
-    trackCTAClick(ctaType, ctaText);
-    
-    // Track potential lead (since this is a bridge page, clicking CTA indicates intent)
-    trackLead();
-    
-    // Show loading screen before redirect
-    console.log(`CTA clicked: ${ctaType} - ${ctaText}`);
-    setShowLoading(true);
+    try {
+      // Track the CTA click for analytics
+      trackCTAClick(ctaType, ctaText).catch(err => console.log('CTA tracking error:', err));
+      
+      // Track potential lead (since this is a bridge page, clicking CTA indicates intent)
+      trackLead().catch(err => console.log('Lead tracking error:', err));
+      
+      // Show loading screen before redirect
+      console.log(`CTA clicked: ${ctaType} - ${ctaText}`);
+      setShowLoading(true);
+    } catch (error) {
+      console.log('CTA click error:', error);
+      // Still show loading and redirect even if tracking fails
+      setShowLoading(true);
+    }
   };
 
   const handleRedirectComplete = () => {
-    // Track the redirect event
-    trackRedirect();
+    try {
+      // Track the redirect event
+      trackRedirect().catch(err => console.log('Redirect tracking error:', err));
+    } catch (error) {
+      console.log('Redirect tracking error:', error);
+    }
     
     // Redirect to MaxBounty affiliate link after loading screen
     window.location.href = 'https://afflat3e1.com/trk/lnk/E9FE846C-D650-4A23-A71F-1A020485FDAD/?o=22134&c=918277&a=713051&k=BD87E19173921A7698931850BC9E82E2&l=22980';

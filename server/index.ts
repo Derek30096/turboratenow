@@ -67,10 +67,25 @@ export async function createAppServer() {
 (async () => {
   const server = await createAppServer();
   const port = parseInt(process.env.PORT || '5000', 10);
+  
+  // Handle port in use error
+  server.on('error', (err: any) => {
+    if (err.code === 'EADDRINUSE') {
+      console.log(`Port ${port} in use, trying ${port + 1}`);
+      server.listen({
+        port: port + 1,
+        host: "0.0.0.0",
+      }, () => {
+        log(`serving on port ${port + 1}`);
+      });
+    } else {
+      console.error('Server error:', err);
+    }
+  });
+  
   server.listen({
     port,
     host: "0.0.0.0",
-    reusePort: true,
   }, () => {
     log(`serving on port ${port}`);
   });

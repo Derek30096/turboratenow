@@ -19,7 +19,7 @@ export function registerRoutes(app: express.Application) {
     
     // Log domain requests for debugging
     if (host && host.includes('turboratenow')) {
-      console.log(`Domain request: ${host} from ${req.ip} - ${userAgent.substring(0, 50)}`);
+      console.log(`🌐 DOMAIN REQUEST: ${host} from ${req.ip} at ${new Date().toISOString()} - ${userAgent.substring(0, 50)}`);
     }
     
     if (host === 'turboratenow.com' || host === 'www.turboratenow.com' || host?.includes('turboratenow')) {

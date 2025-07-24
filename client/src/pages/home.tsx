@@ -12,11 +12,9 @@ export default function Home() {
 
   useEffect(() => {
     try {
-      // Initialize advanced tracking
-      initializeAdvancedTracking();
-      
-      // Track page visit
-      trackVisitor().catch(err => console.log('Tracking init error:', err));
+      // TRACKING DISABLED to prevent billing charges
+      // initializeAdvancedTracking();
+      // trackVisitor().catch(err => console.log('Tracking init error:', err));
       
       observerRef.current = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -41,26 +39,23 @@ export default function Home() {
 
   const handleCTAClick = (ctaType: string, ctaText: string) => {
     try {
-      // Track the CTA click for analytics
-      trackCTAClick(ctaType, ctaText).catch(err => console.log('CTA tracking error:', err));
-      
-      // Track potential lead (since this is a bridge page, clicking CTA indicates intent)
-      trackLead().catch(err => console.log('Lead tracking error:', err));
+      // TRACKING DISABLED to prevent billing charges
+      // trackCTAClick(ctaType, ctaText).catch(err => console.log('CTA tracking error:', err));
+      // trackLead().catch(err => console.log('Lead tracking error:', err));
       
       // Show loading screen before redirect
       console.log(`CTA clicked: ${ctaType} - ${ctaText}`);
       setShowLoading(true);
     } catch (error) {
       console.log('CTA click error:', error);
-      // Still show loading and redirect even if tracking fails
       setShowLoading(true);
     }
   };
 
   const handleRedirectComplete = () => {
     try {
-      // Track the redirect event
-      trackRedirect().catch(err => console.log('Redirect tracking error:', err));
+      // TRACKING DISABLED to prevent billing charges
+      // trackRedirect().catch(err => console.log('Redirect tracking error:', err));
     } catch (error) {
       console.log('Redirect tracking error:', error);
     }

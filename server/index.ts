@@ -65,8 +65,8 @@ export async function createAppServer() {
   app.get('*', (req, res, next) => {
     const host = req.header('host') || req.hostname;
     if (host?.includes('turboratenow')) {
-      console.log(`🎯 FAILSAFE: ${host} serving Champion Auto Insurance`);
-      return res.sendFile(path.join(process.cwd(), 'simple.html'));
+      console.log(`🎯 FAILSAFE: ${host} serving Champion Auto Insurance React App`);
+      return res.sendFile(path.join(process.cwd(), 'dist', 'public', 'index.html'));
     }
     next();
   });

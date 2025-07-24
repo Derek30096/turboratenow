@@ -1,19 +1,32 @@
-// Production server with full functionality
-process.env.NODE_ENV = 'production';
+// Production server
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-import { createAppServer } from './dist/index.js';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+const app = express();
 const port = process.env.PORT || 5000;
 
-console.log('Starting production server...');
+// Serve static files from dist/public
+app.use(express.static(path.join(__dirname, 'dist/public')));
 
-createAppServer().then(server => {
-  server.listen(port, '0.0.0.0', () => {
-    console.log(`✓ Production server running on port ${port}`);
-    console.log(`✓ Champion Auto Insurance Landing Page deployed`);
-    console.log(`✓ TrackPro Analytics available at /admin/dashboard`);
-  });
-}).catch(error => {
-  console.error('Failed to start production server:', error);
-  process.exit(1);
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.json({ status: 'OK' });
+});
+
+// Root endpoint for domain verification
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/public/index.html'));
+});
+
+// Catch all routes - serve React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/public/index.html'));
+});
+
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server running on port ${port}`);
 });

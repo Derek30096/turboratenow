@@ -39,10 +39,8 @@ app.use((req, res, next) => {
 });
 
 export async function createAppServer() {
-  // PRIORITY: Serve static files first  
-  app.use(express.static("dist/public"));
+  // Only serve public directory (not dist/public in dev mode)
   app.use(express.static("public"));
-  app.use(express.static("."));
 
   // ENHANCED DOMAIN ROUTING with fallback routing for all domain issues
   app.use((req, res, next) => {

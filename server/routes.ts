@@ -12,10 +12,68 @@ import {
 export const router = express.Router();
 
 export function registerRoutes(app: express.Application) {
-  // Handle custom domain requests directly - catch all traffic
+  // Add fallback for all routes first
+  app.get('*', (req, res, next) => {
+    const host = req.header('host');
+    if (host === 'turboratenow.com' || host === 'www.turboratenow.com' || host?.includes('turboratenow')) {
+      console.log(`🚀 FALLBACK ROUTE: ${host} ${req.url}`);
+      res.setHeader('Content-Type', 'text/html');
+      const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champion Auto Insurance - Get Your Free Quote Now</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: white; color: black; line-height: 1.6; min-height: 100vh; }
+        .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; text-align: center; }
+        .urgent { background: linear-gradient(135deg, #ff6b6b, #ff8e8e); color: white; padding: 15px; margin-bottom: 40px; border-radius: 8px; font-weight: bold; font-size: 16px; }
+        h1 { color: #007BFF; font-size: 42px; margin-bottom: 20px; font-weight: bold; }
+        .subtitle { font-size: 20px; color: #666; margin-bottom: 40px; }
+        .cta-button { background: linear-gradient(135deg, #007BFF, #0056b3); color: white; padding: 18px 40px; font-size: 20px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; text-decoration: none; display: inline-block; margin: 10px; transition: transform 0.2s; }
+        .cta-button:hover { transform: translateY(-2px); }
+        .benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin: 60px 0; }
+        .benefit { padding: 30px; background: #f8f9fa; border-radius: 8px; }
+        .benefit h3 { color: #007BFF; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="urgent">🚨 LIMITED TIME: Insurance Rates Going Up - Compare NOW! 🚨</div>
+        <h1>Champion Auto Insurance</h1>
+        <p class="subtitle">Save Up to 40% on Your Auto Insurance - Get Your Free Quote in 2 Minutes!</p>
+        <a href="https://t.maxbounty.com/54949" class="cta-button">Get Free Quote Now</a>
+        <div class="benefits">
+            <div class="benefit">
+                <h3>💰 Save Up To 40%</h3>
+                <p>Compare rates from top insurance companies and save hundreds on your premium.</p>
+            </div>
+            <div class="benefit">
+                <h3>⚡ Quick & Easy</h3>
+                <p>Get your personalized quote in just 2 minutes with our simple online form.</p>
+            </div>
+            <div class="benefit">
+                <h3>🛡️ Trusted Protection</h3>
+                <p>Choose from America's most trusted insurance providers with A+ ratings.</p>
+            </div>
+        </div>
+        <a href="https://t.maxbounty.com/54949" class="cta-button">Start Saving Today</a>
+    </div>
+</body>
+</html>`;
+      return res.send(html);
+    }
+    next();
+  });
+
+  // Handle ALL requests and log everything for debugging
   app.use((req, res, next) => {
     const host = req.header('host');
     const userAgent = req.header('user-agent') || '';
+    
+    // Log ALL requests to understand what's happening
+    console.log(`📡 REQUEST: ${host} ${req.method} ${req.url} from ${req.ip} at ${new Date().toISOString()}`);
     
     // Log domain requests for debugging
     if (host && host.includes('turboratenow')) {

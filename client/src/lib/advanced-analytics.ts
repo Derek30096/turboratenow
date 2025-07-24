@@ -16,109 +16,23 @@ function getSessionId(): string {
 
 // Enhanced visitor tracking with device detection
 export async function trackVisitor(campaignId?: number): Promise<any> {
-  try {
-    const urlParams = new URLSearchParams(window.location.search);
-    
-    const visitorData = {
-      sessionId: getSessionId(),
-      landingPage: window.location.href,
-      campaignId,
-      // UTM parameters
-      utm_source: urlParams.get('utm_source'),
-      utm_medium: urlParams.get('utm_medium'),
-      utm_campaign: urlParams.get('utm_campaign'),
-      utm_term: urlParams.get('utm_term'),
-      utm_content: urlParams.get('utm_content')
-    };
-
-    const response = await fetch('/api/track/visitor', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(visitorData),
-    });
-
-    const result = await response.json();
-    if (result.success && result.visitor) {
-      visitorId = result.visitor.id;
-      if (visitorId) {
-        localStorage.setItem('visitor_id', visitorId.toString());
-      }
-    }
-    
-    return result;
-  } catch (error) {
-    console.error('Error tracking visitor:', error);
-    return { success: false, error: error };
-  }
+  // TRACKING COMPLETELY DISABLED TO PREVENT BILLING CHARGES
+  console.log('Tracking disabled - no API calls made');
+  return { success: false, disabled: true };
 }
 
 // Enhanced CTA click tracking with coordinates and timing
 export async function trackCTAClick(ctaType: string, ctaText: string, elementId?: string): Promise<any> {
-  try {
-    if (!visitorId) {
-      visitorId = parseInt(localStorage.getItem('visitor_id') || '0') || null;
-    }
-
-    const timeOnPage = Math.floor((Date.now() - pageStartTime) / 1000);
-
-    const clickData = {
-      visitorId: visitorId || 0,
-      sessionId: getSessionId(),
-      ctaType,
-      ctaText,
-      elementId,
-      pageUrl: window.location.href,
-      timeOnPage
-    };
-
-    const response = await fetch('/api/track/cta-click', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(clickData),
-    });
-
-    return await response.json();
-  } catch (error) {
-    console.error('Error tracking CTA click:', error);
-    return { success: false, error: error };
-  }
+  // TRACKING COMPLETELY DISABLED TO PREVENT BILLING CHARGES
+  console.log('CTA tracking disabled - no API calls made');
+  return { success: false, disabled: true };
 }
 
 // Track lead conversion with affiliate network details
 export async function trackLead(email?: string, zipCode?: string, conversionValue = "25.00"): Promise<any> {
-  try {
-    if (!visitorId) {
-      visitorId = parseInt(localStorage.getItem('visitor_id') || '0') || null;
-    }
-
-    const leadData = {
-      visitorId: visitorId || 0,
-      sessionId: getSessionId(),
-      email,
-      zipCode,
-      conversionValue,
-      conversionType: 'click',
-      affiliateNetwork: 'MaxBounty',
-      payout: conversionValue
-    };
-
-    const response = await fetch('/api/track/lead', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(leadData),
-    });
-
-    return await response.json();
-  } catch (error) {
-    console.error('Error tracking lead:', error);
-    return { success: false, error: error };
-  }
+  // TRACKING COMPLETELY DISABLED TO PREVENT BILLING CHARGES
+  console.log('Lead tracking disabled - no API calls made');
+  return { success: false, disabled: true };
 }
 
 // Track page events (scroll, hover, exit, etc.)
@@ -154,29 +68,9 @@ export async function trackPageEvent(eventType: string, element?: string, data?:
 
 // Track redirect to affiliate link
 export async function trackRedirect(): Promise<any> {
-  try {
-    if (!visitorId) {
-      visitorId = parseInt(localStorage.getItem('visitor_id') || '0') || null;
-    }
-
-    const redirectData = {
-      visitorId: visitorId || 0,
-      sessionId: getSessionId()
-    };
-
-    const response = await fetch('/api/track/redirect', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(redirectData),
-    });
-
-    return await response.json();
-  } catch (error) {
-    console.error('Error tracking redirect:', error);
-    return null;
-  }
+  // TRACKING COMPLETELY DISABLED TO PREVENT BILLING CHARGES
+  console.log('Redirect tracking disabled - no API calls made');
+  return { success: false, disabled: true };
 }
 
 // Setup automatic page event tracking

@@ -4,7 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { LoadingBar } from "@/components/ui/loading-bar";
 import { RedirectLoading } from "@/components/ui/redirect-loading";
 import { CheckCircle, Shield, DollarSign } from "lucide-react";
-import { trackVisitor, trackCTAClick, trackLead, trackRedirect, initializeAdvancedTracking } from "@/lib/advanced-analytics";
+// TRACKING COMPLETELY DISABLED
+import { trackVisitor, trackCTAClick, trackLead, trackRedirect, initializeAdvancedTracking } from "@/lib/advanced-analytics-disabled";
 
 export default function Home() {
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -12,9 +13,9 @@ export default function Home() {
 
   useEffect(() => {
     try {
-      // TRACKING DISABLED to prevent billing charges
-      // initializeAdvancedTracking();
-      // trackVisitor().catch(err => console.log('Tracking init error:', err));
+      // TRACKING COMPLETELY DISABLED to prevent billing charges
+      initializeAdvancedTracking();
+      trackVisitor().catch(err => console.log('Tracking disabled:', err));
       
       observerRef.current = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -40,8 +41,8 @@ export default function Home() {
   const handleCTAClick = (ctaType: string, ctaText: string) => {
     try {
       // TRACKING DISABLED to prevent billing charges
-      // trackCTAClick(ctaType, ctaText).catch(err => console.log('CTA tracking error:', err));
-      // trackLead().catch(err => console.log('Lead tracking error:', err));
+      trackCTAClick(ctaType, ctaText).catch(err => console.log('CTA tracking disabled:', err));
+      trackLead().catch(err => console.log('Lead tracking disabled:', err));
       
       // Show loading screen before redirect
       console.log(`CTA clicked: ${ctaType} - ${ctaText}`);
@@ -55,7 +56,7 @@ export default function Home() {
   const handleRedirectComplete = () => {
     try {
       // TRACKING DISABLED to prevent billing charges
-      // trackRedirect().catch(err => console.log('Redirect tracking error:', err));
+      trackRedirect().catch(err => console.log('Redirect tracking disabled:', err));
     } catch (error) {
       console.log('Redirect tracking error:', error);
     }
@@ -86,10 +87,11 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
             <div className="text-center md:text-left order-2 md:order-1">
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight">
-                Most Drivers Overpay $437/Year on Auto Insurance
+                <span className="text-white">Champion Auto Insurance</span><br/>
+                <span className="text-yellow-300">Save Up to $437/Year</span>
               </h1>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-4 text-blue-100 leading-relaxed">
-                Compare Top Providers & Save Big in Under 60 Seconds
+                Get Your Free Quote & Compare Top Rates in Under 60 Seconds
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-2 sm:gap-3 mb-4 sm:mb-6">
                 <div className="flex items-center bg-white/10 rounded-full px-2 sm:px-3 md:px-4 py-1.5 sm:py-2">

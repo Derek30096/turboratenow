@@ -38,17 +38,14 @@ app.use((req, res, next) => {
 });
 
 export async function createAppServer() {
+  // Add health check route FIRST
+  app.get('/', (req, res) => {
+    res.status(200).json({ status: 'OK', message: 'Server is running' });
+  });
+
   await registerRoutes(app);
   
   const server = createServer(app);
-
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
-
-    res.status(status).json({ message });
-    throw err;
-  });
 
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
@@ -58,6 +55,15 @@ export async function createAppServer() {
   } else {
     serveStatic(app);
   }
+
+  // Move error handler AFTER all routes including static files
+  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+    const status = err.status || err.statusCode || 500;
+    const message = err.message || "Internal Server Error";
+    console.error('Server error:', err);
+    res.status(status).json({ message });
+    // DON'T throw - just log
+  });
 
   return server;
 }

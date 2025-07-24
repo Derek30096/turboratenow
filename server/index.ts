@@ -42,30 +42,9 @@ export async function createAppServer() {
   // Only serve public directory (not dist/public in dev mode)
   app.use(express.static("public"));
 
-  // ENHANCED DOMAIN ROUTING with fallback routing for all domain issues
+  // Simple request logging only - let React app handle all routes
   app.use((req, res, next) => {
-    console.log(`📡 REQUEST: ${req.hostname} ${req.method} ${req.path} from ${req.ip} at ${new Date().toISOString()}`);
-    
-    const host = req.header('host') || req.hostname;
-    if (host === 'turboratenow.com' || host === 'www.turboratenow.com' || host?.includes('turboratenow')) {
-      console.log(`🌟 DOMAIN DIRECT: ${host} ${req.url} - Serving Champion Auto Insurance`);
-      res.setHeader('Content-Type', 'text/html; charset=utf-8');
-      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-      res.setHeader('Pragma', 'no-cache');
-      res.setHeader('Expires', '0');
-      // Serve the beautiful React app build for domain requests
-      return res.sendFile(path.join(process.cwd(), 'dist', 'public', 'index.html'));
-    }
-    next();
-  });
-
-  // Add failsafe route for turboratenow.com
-  app.get('*', (req, res, next) => {
-    const host = req.header('host') || req.hostname;
-    if (host?.includes('turboratenow')) {
-      console.log(`🎯 FAILSAFE: ${host} serving Champion Auto Insurance React App`);
-      return res.sendFile(path.join(process.cwd(), 'dist', 'public', 'index.html'));
-    }
+    console.log(`📡 REQUEST: ${req.method} ${req.path}`);
     next();
   });
 

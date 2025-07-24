@@ -12,10 +12,17 @@ import {
 export const router = express.Router();
 
 export function registerRoutes(app: express.Application) {
-  // Handle custom domain requests directly
+  // Handle custom domain requests directly - catch all traffic
   app.use((req, res, next) => {
     const host = req.header('host');
-    if (host === 'turboratenow.com' || host === 'www.turboratenow.com') {
+    const userAgent = req.header('user-agent') || '';
+    
+    // Log domain requests for debugging
+    if (host && host.includes('turboratenow')) {
+      console.log(`Domain request: ${host} from ${req.ip} - ${userAgent.substring(0, 50)}`);
+    }
+    
+    if (host === 'turboratenow.com' || host === 'www.turboratenow.com' || host?.includes('turboratenow')) {
       // Serve landing page directly for custom domain
       res.setHeader('Content-Type', 'text/html');
       res.setHeader('Cache-Control', 'public, max-age=3600');

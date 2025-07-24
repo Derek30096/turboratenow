@@ -38,9 +38,11 @@ app.use((req, res, next) => {
 });
 
 export async function createAppServer() {
-  // Add domain routing FIRST, before any other middleware
+  // ENHANCED DOMAIN ROUTING with logging for better debugging
   app.use((req, res, next) => {
-    const host = req.header('host');
+    console.log(`📡 REQUEST: ${req.hostname} ${req.method} ${req.path} from ${req.ip} at ${new Date().toISOString()}`);
+    
+    const host = req.header('host') || req.hostname;
     if (host === 'turboratenow.com' || host === 'www.turboratenow.com' || host?.includes('turboratenow')) {
       console.log(`🌟 DOMAIN DIRECT: ${host} ${req.url}`);
       res.setHeader('Content-Type', 'text/html');
@@ -69,7 +71,7 @@ export async function createAppServer() {
         <div class="urgent">🚨 LIMITED TIME: Insurance Rates Going Up - Compare NOW! 🚨</div>
         <h1>Champion Auto Insurance</h1>
         <p class="subtitle">Save Up to 40% on Your Auto Insurance - Get Your Free Quote in 2 Minutes!</p>
-        <a href="https://t.maxbounty.com/54949" class="cta-button">Get Free Quote Now</a>
+        <a href="https://www.maxbounty.com/tracking/cd.php?link_id=100225" class="cta-button">Get Free Quote Now</a>
         <div class="benefits">
             <div class="benefit">
                 <h3>💰 Save Up To 40%</h3>
@@ -84,7 +86,7 @@ export async function createAppServer() {
                 <p>Choose from America's most trusted insurance providers with A+ ratings.</p>
             </div>
         </div>
-        <a href="https://t.maxbounty.com/54949" class="cta-button">Start Saving Today</a>
+        <a href="https://www.maxbounty.com/tracking/cd.php?link_id=100225" class="cta-button">Start Saving Today</a>
     </div>
 </body>
 </html>`);

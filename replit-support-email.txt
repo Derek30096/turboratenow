@@ -1,4 +1,4 @@
-Subject: URGENT: Domain Verification Failed After 40+ Minutes - Billing Issue
+Subject: URGENT: Domain Verification Failed After 24+ HOURS - Billing Dispute
 
 Dear Replit Support,
 
@@ -7,7 +7,7 @@ I am experiencing a critical issue with domain verification that has now exceede
 ISSUE DETAILS:
 - Domain: turboratenow.com
 - Project: cpa-bridge-booster-binghamderek
-- Problem: Domain shows "Not Found" after 40+ minutes of "verification"
+- Problem: Domain shows "Not Found" after 24+ HOURS of "verification"
 - DNS: Correctly configured in Cloudflare (A: 34.111.179.208, TXT verification)
 
 TIMELINE:

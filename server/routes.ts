@@ -12,6 +12,18 @@ import {
 export const router = express.Router();
 
 export function registerRoutes(app: express.Application) {
+  // Emergency simple landing page route
+  app.get('/simple', (req, res) => {
+    res.send(`<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Champion Auto Insurance</title>
+<style>body{margin:0;padding:50px 20px;font-family:Arial,sans-serif;background:white;color:black;text-align:center}
+h1{color:#007BFF;font-size:36px;margin-bottom:20px}p{font-size:20px;margin-bottom:30px;color:#333}
+.btn{background:#007BFF;color:white;padding:20px 40px;font-size:18px;border:none;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-block;font-weight:bold}.btn:hover{background:#0056b3}</style>
+</head><body><h1>Champion Auto Insurance</h1><p>Get your free quote and compare top rates in under a minute!</p>
+<a href="https://afflat3e1.com/trk/lnk/E9FE846C-D650-4A23-A71F-1A020485FDAD/?o=22134&c=918277&a=713051&k=BD87E19173921A7698931850BC9E82E2&l=22980" class="btn">Get Free Quote Now</a>
+<p style="margin-top:40px;font-size:16px">Save up to 40% on your auto insurance premium</p></body></html>`);
+  });
+
   // Health check endpoint for Replit (only for production health checks)
   app.get('/health', (req, res) => {
     res.status(200).json({ status: 'OK', message: 'Server is running' });

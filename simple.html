@@ -137,56 +137,6 @@
             margin-bottom: 15px;
         }
         
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        
-        .loading-content {
-            text-align: center;
-            color: white;
-        }
-        
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #27ae60;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .progress-bar {
-            width: 300px;
-            height: 20px;
-            background: #333;
-            border-radius: 10px;
-            margin: 20px auto;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(45deg, #27ae60, #2ecc71);
-            width: 0%;
-            border-radius: 10px;
-            transition: width 0.3s ease;
-        }
-        
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -224,11 +174,11 @@
                 ⚡ LIMITED TIME: Insurance Rates Going Up January 31st!
             </div>
             
-            <a href="https://www.maxbounty.com/tracking/cd.php?link_id=100225" class="cta-button" onclick="showLoading()">
+            <a href="https://www.maxbounty.com/tracking/cd.php?link_id=100225" class="cta-button">
                 Get My Free Quote Now
             </a>
             
-            <a href="https://www.maxbounty.com/tracking/cd.php?link_id=100225" class="cta-button" onclick="showLoading()" style="background: linear-gradient(45deg, #e74c3c, #c0392b);">
+            <a href="https://www.maxbounty.com/tracking/cd.php?link_id=100225" class="cta-button" style="background: linear-gradient(45deg, #e74c3c, #c0392b);">
                 Compare Rates & Save
             </a>
         </div>
@@ -258,7 +208,7 @@
         </div>
         
         <div style="text-align: center; margin: 40px 0;">
-            <a href="https://www.maxbounty.com/tracking/cd.php?link_id=100225" class="cta-button" onclick="showLoading()" style="font-size: 28px; padding: 25px 50px;">
+            <a href="https://www.maxbounty.com/tracking/cd.php?link_id=100225" class="cta-button" style="font-size: 28px; padding: 25px 50px;">
                 Start Saving Today →
             </a>
         </div>
@@ -267,64 +217,5 @@
             <strong>Disclaimer:</strong> Savings amounts based on information from customers who switched and saved with their new policy. Individual savings may vary. This advertisement is powered by Champion Auto Insurance marketing partners.
         </div>
     </div>
-    
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-content">
-            <div class="spinner"></div>
-            <h2>Finding Your Best Rates...</h2>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-            <p id="loadingText">Comparing rates from top providers...</p>
-        </div>
-    </div>
-    
-    <script>
-        function showLoading() {
-            const overlay = document.getElementById('loadingOverlay');
-            const progressFill = document.getElementById('progressFill');
-            const loadingText = document.getElementById('loadingText');
-            
-            overlay.style.display = 'flex';
-            
-            let progress = 0;
-            const messages = [
-                'Comparing rates from top providers...',
-                'Analyzing your location...',
-                'Finding the best deals...',
-                'Almost ready...'
-            ];
-            
-            const interval = setInterval(() => {
-                progress += Math.random() * 30;
-                if (progress > 100) progress = 100;
-                
-                progressFill.style.width = progress + '%';
-                
-                if (progress < 25) loadingText.textContent = messages[0];
-                else if (progress < 50) loadingText.textContent = messages[1];
-                else if (progress < 75) loadingText.textContent = messages[2];
-                else loadingText.textContent = messages[3];
-                
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        window.location.href = 'https://www.maxbounty.com/tracking/cd.php?link_id=100225';
-                    }, 1000);
-                }
-            }, 200);
-        }
-        
-        // Visitor tracking for analytics
-        fetch('/api/track-visitor', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                page: 'landing',
-                referrer: document.referrer,
-                userAgent: navigator.userAgent
-            })
-        }).catch(() => {}); // Silent fail if tracking unavailable
-    </script>
 </body>
 </html>

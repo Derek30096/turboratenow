@@ -2,7 +2,7 @@ Subject: URGENT: Domain Verification Failed After 40+ Minutes - Billing Issue
 
 Dear Replit Support,
 
-I am experiencing a critical issue with domain verification that has now exceeded 40 minutes with no resolution. This is completely unacceptable for a paid service.
+I am experiencing a critical issue with domain verification that has now exceeded 24 HOURS with no resolution. This is completely unacceptable for a paid service.
 
 ISSUE DETAILS:
 - Domain: turboratenow.com
@@ -11,9 +11,9 @@ ISSUE DETAILS:
 - DNS: Correctly configured in Cloudflare (A: 34.111.179.208, TXT verification)
 
 TIMELINE:
-- Domain added: ~12:00 PM UTC today
+- Domain added: Yesterday (24+ hours ago)
 - Expected resolution: 5-15 minutes
-- Actual status: 40+ minutes of failure
+- Actual status: 24+ HOURS of complete failure
 - Business impact: CPA marketing campaign delayed
 
 TECHNICAL STATUS:
@@ -30,7 +30,7 @@ IMMEDIATE ACTION REQUESTED:
 2. Credit my account for non-functional service time
 3. Escalate to technical team for immediate resolution
 
-This domain is needed for a business marketing campaign. 40+ minutes is far beyond any reasonable verification timeframe. Please resolve immediately and address the billing issue.
+This domain is needed for a business marketing campaign. 24+ HOURS is completely unacceptable and far beyond any reasonable verification timeframe. Please resolve immediately and provide full billing credit for this service failure.
 
 Project URL: cpa-bridge-booster-binghamderek.replit.app
 Domain: turboratenow.com

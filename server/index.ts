@@ -42,9 +42,19 @@ export async function createAppServer() {
   // Only serve public directory (not dist/public in dev mode)
   app.use(express.static("public"));
 
-  // Simple request logging only - let React app handle all routes
+  // EMERGENCY DOMAIN FIX: Direct routing for turboratenow.com
   app.use((req, res, next) => {
-    console.log(`📡 REQUEST: ${req.method} ${req.path}`);
+    const hostname = req.get('host') || req.hostname;
+    console.log(`📡 REQUEST: ${req.method} ${req.path} [Host: ${hostname}]`);
+    
+    // If request is for turboratenow.com, serve the React app immediately
+    if (hostname === 'turboratenow.com' || hostname === 'www.turboratenow.com') {
+      console.log(`🎯 DOMAIN MATCH: Serving React app for ${hostname}`);
+      // Force headers for domain requests
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
+    }
     next();
   });
 

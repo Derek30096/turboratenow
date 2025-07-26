@@ -1,45 +1,49 @@
-// Force domain check script
-const https = require('https');
+import https from 'https';
 
-console.log('Testing turboratenow.net connection...');
+console.log('=== TESTING DOMAIN STATUS ===');
 
+// Test domain with detailed SSL info
 const options = {
   hostname: 'turboratenow.net',
   port: 443,
   path: '/',
   method: 'GET',
-  timeout: 5000,
+  timeout: 15000,
+  rejectUnauthorized: false, // Bypass SSL cert issues
   headers: {
-    'User-Agent': 'Domain-Test-Script',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
-  },
-  // Allow self-signed certificates during verification
-  rejectUnauthorized: false
+    'User-Agent': 'Mozilla/5.0 (compatible; DomainTest/1.0)',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    'Cache-Control': 'no-cache'
+  }
 };
 
 const req = https.request(options, (res) => {
-  console.log(`Status: ${res.statusCode}`);
-  console.log(`Headers:`, JSON.stringify(res.headers, null, 2));
+  console.log(`✅ Status: ${res.statusCode}`);
+  console.log(`✅ Headers:`, res.headers);
   
   let data = '';
-  res.on('data', (chunk) => {
-    data += chunk;
-  });
+  res.on('data', (chunk) => data += chunk);
   
   res.on('end', () => {
-    console.log('Response length:', data.length);
-    console.log('First 200 chars:', data.substring(0, 200));
+    if (data.includes('React app') || data.includes('Most Drivers')) {
+      console.log('🎯 SUCCESS: Domain serving your landing page!');
+    } else if (res.statusCode === 200) {
+      console.log('⚠️ Domain responds but content may be wrong');
+      console.log('Preview:', data.substring(0, 300));
+    } else {
+      console.log('❌ Domain not working correctly');
+    }
   });
 });
 
-req.on('error', (e) => {
-  console.error(`Request error: ${e.message}`);
+req.on('error', (err) => {
+  console.log(`❌ Error: ${err.message}`);
+  console.log('🔧 This confirms SSL/routing issues');
 });
 
 req.on('timeout', () => {
-  console.error('Request timeout');
+  console.log('❌ Timeout - domain not responding');
   req.destroy();
 });
 
-req.setTimeout(5000);
 req.end();

@@ -39,22 +39,33 @@ app.use((req, res, next) => {
 });
 
 export async function createAppServer() {
-  // Only serve public directory (not dist/public in dev mode)
-  app.use(express.static("public"));
+  // PRIORITY: Static files first with enhanced options
+  app.use(express.static("public", {
+    index: ['index.html'],
+    fallthrough: true,
+    maxAge: '1h'
+  }));
 
-  // DOMAIN ROUTING: Handle all external domains
+  // DOMAIN ROUTING: Handle all external domains with PRIORITY ROUTING
   app.use((req, res, next) => {
     const hostname = req.get('host') || req.hostname;
     console.log(`📡 REQUEST: ${req.method} ${req.path} [Host: ${hostname}]`);
     
-    // Handle external domains (turboratenow.com and turboratenow.net)
+    // PRIORITY: Handle external domains IMMEDIATELY
     if (hostname && (hostname.includes('turboratenow.com') || hostname.includes('turboratenow.net'))) {
-      console.log(`🎯 EXTERNAL DOMAIN: ${hostname} - serving React app`);
+      console.log(`🎯 EXTERNAL DOMAIN: ${hostname} - PRIORITY ROUTING`);
+      
       // Set headers for external domain requests
       res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
       res.setHeader('Pragma', 'no-cache');
       res.setHeader('Expires', '0');
       res.setHeader('X-Domain-Handler', 'turboratenow');
+      
+      // FORCE SERVE HTML for root requests
+      if (req.path === '/' || req.path === '/index.html') {
+        console.log(`🚀 SERVING LANDING PAGE for ${hostname}`);
+        return res.sendFile('index.html', { root: 'public' });
+      }
     }
     next();
   });

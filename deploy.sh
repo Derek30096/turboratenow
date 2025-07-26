@@ -15,7 +15,7 @@ echo "Domain HTTP Status: $DOMAIN_STATUS"
 if [ "$DOMAIN_STATUS" = "404" ]; then
     echo "❌ CRITICAL: Domain routing still broken"
     echo "📧 Send replit-support-email.txt to Replit Support IMMEDIATELY"
-    echo "🌐 Use working URL: cpa-bridge-booster-binghamderek.replit.app"
+    echo "🌐 Use working URL: cpa-bridge-booster-project.replit.app"
 elif [ "$DOMAIN_STATUS" = "200" ]; then
     echo "✅ SUCCESS: Domain is working!"
 else
@@ -26,6 +26,6 @@ echo ""
 echo "📋 IMMEDIATE ACTION ITEMS:"
 echo "1. Contact Replit Support with technical evidence"
 echo "2. Demand billing credit for service failure"  
-echo "3. Use working Replit URL for campaigns: cpa-bridge-booster-binghamderek.replit.app"
+echo "3. Use working Replit URL for campaigns: cpa-bridge-booster-project.replit.app"
 echo ""
 echo "🎯 Your CPA landing page is ready and fully functional!"

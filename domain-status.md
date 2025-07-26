@@ -33,4 +33,4 @@ curl -I https://turboratenow.com/
 ```
 
 ## Workaround
-React application works perfectly at: cpa-bridge-booster-binghamderek.replit.app
+React application works perfectly at: cpa-bridge-booster-project.replit.app

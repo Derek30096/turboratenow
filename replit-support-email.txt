@@ -40,6 +40,6 @@ This is the second domain service failure in 3 days. I need immediate resolution
 
 Please escalate to your engineering team immediately.
 
-User: binghamderek
+User: [PROJECT-USER]
 Domain: turboratenow.net
 Status: URGENT - Second Failure

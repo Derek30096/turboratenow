@@ -14,7 +14,7 @@ Use the complete email template from: `replit-support-email.txt`
 ### Required Attachments/References
 1. **Technical Evidence:** `URGENT-DOMAIN-FAILURE.md`
 2. **Billing Dispute:** `billing-dispute-documentation.md`
-3. **Repl Details:** cpa-bridge-booster-binghamderek
+3. **Repl Details:** cpa-bridge-booster-project
 4. **Domain:** turboratenow.com
 
 ### Escalation Strategy

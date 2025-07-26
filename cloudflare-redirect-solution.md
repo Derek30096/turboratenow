@@ -15,7 +15,7 @@ Since Replit's domain verification is failing (again), use Cloudflare Page Rules
    - **URL Pattern**: `turboratenow.net/*`
    - **Setting**: "Forwarding URL"
    - **Status Code**: "301 - Permanent Redirect"
-   - **Destination URL**: `https://cpa-bridge-booster-binghamderek.replit.app/$1`
+   - **Destination URL**: `https://cpa-bridge-booster-project.replit.app/$1`
 
 ### Step 3: Save and Test
 - Click "Save and Deploy"

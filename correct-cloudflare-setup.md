@@ -5,7 +5,7 @@
 **Currently you have:**
 - Type: CNAME
 - Name: _replit-verify
-- Target: binghamderek.replit.app
+- Target: project.replit.app
 
 **You need to REPLACE this with:**
 

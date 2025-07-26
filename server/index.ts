@@ -39,17 +39,20 @@ app.use((req, res, next) => {
 });
 
 export async function createAppServer() {
-  // PRIORITY: Static files first with cache-busting for debugging
-  app.use(express.static("public", {
-    index: ['index.html'],
-    fallthrough: true,
-    maxAge: 0, // No caching during debugging
-    setHeaders: (res) => {
-      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-      res.setHeader('Pragma', 'no-cache');
-      res.setHeader('Expires', '0');
-    }
-  }));
+  // DEVELOPMENT MODE: Skip public static files - let Vite handle everything
+  // PRODUCTION MODE: Serve static files from dist
+  if (process.env.NODE_ENV !== "development") {
+    app.use(express.static("public", {
+      index: false, // Don't serve index.html from public in production
+      fallthrough: true,
+      maxAge: 0,
+      setHeaders: (res) => {
+        res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        res.setHeader('Pragma', 'no-cache');
+        res.setHeader('Expires', '0');
+      }
+    }));
+  }
 
   // DOMAIN ROUTING: Handle all external domains with PRIORITY ROUTING
   app.use((req, res, next) => {

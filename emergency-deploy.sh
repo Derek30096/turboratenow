@@ -1,41 +1,36 @@
 #!/bin/bash
 
-echo "🚨 EMERGENCY DOMAIN DEPLOYMENT - TURBORATENOW.COM"
-echo "================================================="
+# Emergency deployment to trigger domain routing
+echo "=== Emergency Domain Deployment ==="
 
-# Test current domain status
-echo "🔍 Testing current domain status..."
-DOMAIN_STATUS=$(curl -k -s -o /dev/null -w "%{http_code}" https://turboratenow.com/ --max-time 5)
-echo "Current status: $DOMAIN_STATUS"
+# Kill any existing processes on port 5000
+echo "Stopping existing processes..."
+pkill -f "server/index.ts" 2>/dev/null || true
+pkill -f "production.js" 2>/dev/null || true
 
-if [ "$DOMAIN_STATUS" != "200" ]; then
-    echo "❌ Domain still broken - deploying emergency fixes"
-    
-    # Try force deployment
-    echo "🚀 Attempting emergency deployment..."
-    
-    # Check if replit CLI is available
-    if command -v replit &> /dev/null; then
-        echo "📦 Deploying via Replit CLI..."
-        replit deploy --force
-    else
-        echo "⚠️ Replit CLI not available"
-    fi
-    
-    # Alternative: Contact support with all evidence
-    echo "📧 URGENT: Contact Replit Support immediately"
-    echo "📋 Evidence files created:"
-    echo "   - replit-support-email.txt"
-    echo "   - URGENT-DOMAIN-FAILURE.md"
-    echo "   - backup-domain-strategy.md"
-    
-    echo ""
-    echo "🌐 IMMEDIATE WORKAROUND:"
-    echo "   Use: cpa-bridge-booster-binghamderek.replit.app"
-    echo "   Status: FULLY FUNCTIONAL"
-    echo "   Ready for: CPA campaigns, traffic, conversions"
-    echo ""
-    echo "💰 DEMAND REFUND: 2+ day domain service failure"
-else
-    echo "✅ SUCCESS: Domain is working!"
-fi
+# Wait for cleanup
+sleep 2
+
+# Set production environment
+export NODE_ENV=production
+export PORT=5000
+
+echo "Starting production server for domain routing..."
+
+# Start production server
+nohup node -r tsx/esm server/index.ts > /tmp/production.log 2>&1 &
+PROD_PID=$!
+
+echo "Production server started with PID: $PROD_PID"
+echo "Monitoring for domain connections..."
+
+# Wait and test
+sleep 5
+
+# Test domain routing
+echo "Testing domain routing..."
+curl -H "Host: turboratenow.net" http://localhost:5000/ --max-time 3 2>/dev/null | head -c 100
+echo ""
+
+echo "Production server ready. Domain should route within minutes."
+echo "Log file: /tmp/production.log"

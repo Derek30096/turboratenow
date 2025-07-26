@@ -33,7 +33,7 @@ function App() {
     console.error('App render error:', error);
     return (
       <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-        <h1>Champion Auto Insurance</h1>
+        <h1>Most Drivers Overpay $437/Year on Auto Insurance</h1>
         <p>Loading...</p>
       </div>
     );

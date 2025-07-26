@@ -39,11 +39,16 @@ app.use((req, res, next) => {
 });
 
 export async function createAppServer() {
-  // PRIORITY: Static files first with enhanced options
+  // PRIORITY: Static files first with cache-busting for debugging
   app.use(express.static("public", {
     index: ['index.html'],
     fallthrough: true,
-    maxAge: '1h'
+    maxAge: 0, // No caching during debugging
+    setHeaders: (res) => {
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
+    }
   }));
 
   // DOMAIN ROUTING: Handle all external domains with PRIORITY ROUTING

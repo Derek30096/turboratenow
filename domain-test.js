@@ -1,62 +1,69 @@
-// Test domain connectivity
-const https = require('https');
-const http = require('http');
+// Simple domain connectivity test
+import https from 'https';
+import http from 'http';
 
-console.log('Testing turboratenow.net connectivity...');
-
-// Test HTTP
-const httpOptions = {
-  hostname: 'turboratenow.net',
-  port: 80,
-  path: '/',
-  method: 'GET',
-  headers: {
-    'Host': 'turboratenow.net',
-    'User-Agent': 'Domain-Test/1.0'
-  }
-};
-
-console.log('Testing HTTP...');
-const httpReq = http.request(httpOptions, (res) => {
-  console.log(`HTTP Status: ${res.statusCode}`);
-  console.log(`HTTP Headers:`, res.headers);
-  res.on('data', (chunk) => {
-    console.log(`HTTP Body: ${chunk.toString().substring(0, 100)}...`);
-  });
-});
-
-httpReq.on('error', (err) => {
-  console.log(`HTTP Error: ${err.message}`);
-});
-
-httpReq.end();
-
-// Test HTTPS
-setTimeout(() => {
-  console.log('\nTesting HTTPS...');
-  const httpsOptions = {
-    hostname: 'turboratenow.net',
-    port: 443,
-    path: '/',
-    method: 'GET',
-    rejectUnauthorized: false,
-    headers: {
-      'Host': 'turboratenow.net',
-      'User-Agent': 'Domain-Test/1.0'
-    }
-  };
-
-  const httpsReq = https.request(httpsOptions, (res) => {
-    console.log(`HTTPS Status: ${res.statusCode}`);
-    console.log(`HTTPS Headers:`, res.headers);
-    res.on('data', (chunk) => {
-      console.log(`HTTPS Body: ${chunk.toString().substring(0, 100)}...`);
+async function testDomain() {
+  console.log('=== Testing turboratenow.net Domain ===\n');
+  
+  // Test HTTPS
+  console.log('1. Testing HTTPS connection...');
+  try {
+    await new Promise((resolve, reject) => {
+      const req = https.get('https://turboratenow.net/', {
+        timeout: 8000,
+        rejectUnauthorized: false
+      }, (res) => {
+        console.log(`   ✅ HTTPS Status: ${res.statusCode}`);
+        console.log(`   ✅ SSL Certificate: Working`);
+        resolve(true);
+      });
+      
+      req.on('error', (e) => {
+        console.log(`   ❌ HTTPS Error: ${e.message}`);
+        resolve(false);
+      });
+      
+      req.on('timeout', () => {
+        console.log(`   ❌ HTTPS Timeout`);
+        req.destroy();
+        resolve(false);
+      });
     });
-  });
+  } catch (e) {
+    console.log(`   ❌ HTTPS Exception: ${e.message}`);
+  }
+  
+  // Test HTTP
+  console.log('\n2. Testing HTTP connection...');
+  try {
+    await new Promise((resolve, reject) => {
+      const req = http.get('http://turboratenow.net/', {
+        timeout: 8000
+      }, (res) => {
+        console.log(`   ✅ HTTP Status: ${res.statusCode}`);
+        console.log(`   ✅ Location: ${res.headers.location || 'none'}`);
+        resolve(true);
+      });
+      
+      req.on('error', (e) => {
+        console.log(`   ❌ HTTP Error: ${e.message}`);
+        resolve(false);
+      });
+      
+      req.on('timeout', () => {
+        console.log(`   ❌ HTTP Timeout`);
+        req.destroy();
+        resolve(false);
+      });
+    });
+  } catch (e) {
+    console.log(`   ❌ HTTP Exception: ${e.message}`);
+  }
+  
+  console.log('\n=== Summary ===');
+  console.log('If both tests fail: DNS/routing issue');
+  console.log('If HTTPS fails but HTTP works: SSL issue');  
+  console.log('If both work: Domain should be functional');
+}
 
-  httpsReq.on('error', (err) => {
-    console.log(`HTTPS Error: ${err.message}`);
-  });
-
-  httpsReq.end();
-}, 2000);
+testDomain();

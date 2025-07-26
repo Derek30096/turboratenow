@@ -1,22 +1,45 @@
-// Emergency domain connection script
-const express = require('express');
-const { createProxyMiddleware } = require('http-proxy-middleware');
+// Force domain check script
+const https = require('https');
 
-const app = express();
+console.log('Testing turboratenow.net connection...');
 
-// Force turboratenow.com to redirect to working Replit URL
-app.use((req, res, next) => {
-  const host = req.get('host');
-  console.log(`Incoming request for: ${host}`);
+const options = {
+  hostname: 'turboratenow.net',
+  port: 443,
+  path: '/',
+  method: 'GET',
+  timeout: 5000,
+  headers: {
+    'User-Agent': 'Domain-Test-Script',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+  },
+  // Allow self-signed certificates during verification
+  rejectUnauthorized: false
+};
+
+const req = https.request(options, (res) => {
+  console.log(`Status: ${res.statusCode}`);
+  console.log(`Headers:`, JSON.stringify(res.headers, null, 2));
   
-  if (host === 'turboratenow.com' || host === 'www.turboratenow.com') {
-    console.log('REDIRECTING DOMAIN TO WORKING URL');
-    return res.redirect(301, 'https://cpa-bridge-booster-binghamderek.replit.app' + req.path);
-  }
-  next();
+  let data = '';
+  res.on('data', (chunk) => {
+    data += chunk;
+  });
+  
+  res.on('end', () => {
+    console.log('Response length:', data.length);
+    console.log('First 200 chars:', data.substring(0, 200));
+  });
 });
 
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Domain redirect server running on port ${PORT}`);
+req.on('error', (e) => {
+  console.error(`Request error: ${e.message}`);
 });
+
+req.on('timeout', () => {
+  console.error('Request timeout');
+  req.destroy();
+});
+
+req.setTimeout(5000);
+req.end();

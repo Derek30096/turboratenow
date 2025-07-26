@@ -47,8 +47,9 @@ export async function createAppServer() {
     const hostname = req.get('host') || req.hostname;
     console.log(`📡 REQUEST: ${req.method} ${req.path} [Host: ${hostname}]`);
     
-    // If request is for turboratenow.com, serve the React app immediately
-    if (hostname === 'turboratenow.com' || hostname === 'www.turboratenow.com') {
+    // If request is for turboratenow domains, serve the React app immediately
+    if (hostname === 'turboratenow.com' || hostname === 'www.turboratenow.com' ||
+        hostname === 'turboratenow.net' || hostname === 'www.turboratenow.net') {
       console.log(`🎯 DOMAIN MATCH: Serving React app for ${hostname}`);
       // Force headers for domain requests
       res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');

@@ -100,7 +100,9 @@ Customer approved secure proxy solution to bypass Replit's broken domain system
 - 🔧 FIX NEEDED: Add basic DNS record for Workers Route to function
 - ✅ DNS RECORD ADDED: A record turboratenow.net → 192.0.2.1 (Proxied)
 - 🎯 FOUNDATION COMPLETE: Domain now resolvable for Workers Route to intercept
-- 🧪 READY TO TEST: turboratenow.net should serve landing page through Workers Route
+- ❌ DNS STILL FAILING: DNS_PROBE_FINISHED_NXDOMAIN persists after A record
+- ⏱️ PROPAGATION DELAY: DNS changes need time to spread globally (5-60 minutes)
+- 🔄 ALTERNATIVE: Use working solution while DNS propagates
 - 🎯 RESULT: turboratenow.net will serve landing page without exposing worker subdomain
 - 🗑️ CLEANUP: Can delete old turboratenow-proxy worker after route works
 

@@ -52,6 +52,12 @@ Console shows: "React app rendered successfully"
 ## CUSTOMER SITE RESTORED
 The beautiful CPA landing page with red urgency header, blue gradient, yellow Mercedes, and MaxBounty integration is now working exactly as it was before I broke it.
 
+## DOMAIN CONNECTION REQUEST
+Customer wants turboratenow.net connected to live site
+- DNS already configured in Cloudflare
+- Server routing already supports turboratenow.net
+- Need to connect domain through Replit's domain management
+
 ## DIAGNOSTIC STEPS NEEDED
 1. Check if Home page component is actually rendering
 2. Verify React app is mounting properly

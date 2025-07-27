@@ -298,7 +298,7 @@ export default function Home() {
             </div>
             <Button 
               onClick={() => handleCTAClick('urgency_cta', '🔒 Lock In My Low Rate Now')}
-              className="cta-glow bg-red-600 hover:bg-red-700 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full text-base sm:text-lg shadow-lg h-auto mt-6 w-full sm:w-auto"
+              className="cta-glow bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full text-base sm:text-lg shadow-lg h-auto mt-6 w-full sm:w-auto"
             >
               🔒 Lock In My Low Rate Now
             </Button>

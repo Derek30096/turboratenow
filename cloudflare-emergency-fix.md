@@ -1,52 +1,54 @@
-# EMERGENCY CLOUDFLARE WORKER FIX
+# CLOUDFLARE ERROR 522 EMERGENCY FIX
 
-## CURRENT PROBLEM
-- Worker deployment successful
-- Domain DNS configured correctly  
-- Error 522 connection timeouts persist
-- Development URL may be unstable or changed
+## PROBLEM
+turboratenow.net showing Error 522 - Connection timeout between Cloudflare and origin server
 
-## IMMEDIATE SOLUTIONS TO TRY
+## CAUSE
+Worker cannot reach the Replit development URL. Possible reasons:
+1. Replit URL changed (Replit generates new URLs when restarted)
+2. Network connectivity issue
+3. Replit development server not responding
 
-### Option 1: Test Worker URL Directly
-First test if worker works: `https://turboratenow-proxy.bingham-derek.workers.dev`
-If this shows landing page, DNS propagation is the issue.
+## SOLUTION
+Update the worker with the current working Replit URL from the console logs
 
-### Option 2: Use Alternative Replit URL Format
-Try updating worker with this URL instead:
+## CURRENT REPLIT URL
+From console logs: 84558308-661e-4d2e-89a3-c392a1fd57a3-00-2phr21a0sgnke.spock.replit.dev
+
+## UPDATED WORKER CODE
 ```javascript
-const targetUrl = 'https://cpa-bridge-booster-project--5000.repl.co'
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
+
+async function handleRequest(request) {
+  // Updated with current working Replit URL
+  const targetUrl = 'https://84558308-661e-4d2e-89a3-c392a1fd57a3-00-2phr21a0sgnke.spock.replit.dev'
+  
+  const url = new URL(request.url)
+  const proxyUrl = targetUrl + url.pathname + url.search
+  
+  const modifiedRequest = new Request(proxyUrl, {
+    method: request.method,
+    headers: request.headers,
+    body: request.body
+  })
+  
+  const response = await fetch(modifiedRequest)
+  
+  const modifiedResponse = new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers: {
+      ...Object.fromEntries(response.headers),
+      'X-Powered-By': 'AutoRatesComparison',
+      'Access-Control-Allow-Origin': '*'
+    }
+  })
+  
+  return modifiedResponse
+}
 ```
 
-### Option 3: Emergency Direct Connection
-Temporarily bypass proxy and use direct Replit URL:
-1. Change DNS back to A record: 34.111.179.208
-2. Use working Replit URL directly until proxy resolves
-
-### Option 4: Check Current URL from Logs
-Look for any URL shown in server logs that responds to requests.
-
-## CRITICAL SECURITY ISSUE IDENTIFIED
-Worker URL exposes "bingham-derek" personal information - completely unacceptable for CPA marketing.
-
-## IMMEDIATE SOLUTIONS NEEDED
-
-### Solution 1: Custom Domain Route (Primary)
-Force turboratenow.net to work by:
-1. Change DNS back to A record: 34.111.179.208  
-2. Wait for Replit domain connection to resolve
-3. Use direct domain without proxy
-
-### Solution 2: New Anonymous Worker (Alternative)
-Create new Cloudflare worker with generic name:
-- Worker name: "auto-rates-proxy" or similar
-- No personal information exposed
-- Professional appearance
-
-### Solution 3: Emergency Bypass
-Use Replit URL directly until domain resolves:
-- cpa-bridge-booster-project.replit.app
-- Not ideal but better than exposing personal info
-
-## PRIORITY: SECURITY FIRST
-Cannot launch any campaigns with personal information exposed.
+## BACKUP SOLUTION
+If Replit URL keeps changing, we can implement URL detection or fallback logic.

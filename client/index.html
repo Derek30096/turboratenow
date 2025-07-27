@@ -23,42 +23,16 @@
       </div>
     </noscript>
     
-    <div id="root" style="min-height: 100vh; background: white !important;">
-      <!-- Always visible fallback content -->
-      <div id="fallback" style="display: block !important; padding: 40px; font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background: white; color: black; min-height: 100vh;">
-        <h1 style="color: #007BFF !important; margin-bottom: 20px; font-size: 32px;">Most Drivers Overpay $437/Year</h1>
-        <p style="font-size: 20px; color: #333 !important; margin-bottom: 30px; line-height: 1.4;">Compare auto insurance rates and save big in under 60 seconds!</p>
-        <button style="background: #007BFF !important; color: white !important; padding: 20px 40px; border: none; border-radius: 8px; font-size: 20px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 12px rgba(0,123,255,0.3);" onclick="window.location.href='https://t.maxbounty.com/54949'">Get Free Quote Now</button>
-        <p style="margin-top: 30px; font-size: 14px; color: #666;">Save up to 40% on your auto insurance premium</p>
-      </div>
-    </div>
+    <div id="root" style="min-height: 100vh; background: white !important;"></div>
     <script type="module" src="/src/main.tsx"></script>
     <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
     <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
     
     <script>
-      // Clear any cached content and force refresh
-      if ('caches' in window) {
-        caches.keys().then(function(names) {
-          names.forEach(function(name) {
-            caches.delete(name);
-          });
-        });
-      }
-      
       // Force white background
       document.documentElement.style.background = 'white';
       document.body.style.background = 'white';
-      
-      // Let React app handle the content - fallback stays hidden
-      
-      // Force reload if page is still cached
-      setTimeout(function() {
-        const body = document.body;
-        if (body && (body.style.background === 'black' || body.innerHTML.trim() === '')) {
-          location.reload(true);
-        }
-      }, 1000);
+      console.log('🏁 Page initialization complete');
     </script>
   </body>
 </html>

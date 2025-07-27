@@ -1,3 +1,7 @@
+# ⚠️ SECURITY RISK - DO NOT USE REDIRECT SOLUTION
+**PROBLEM:** Redirect exposes personal info "binghamderek" to competitors
+**USE PROXY SOLUTION INSTEAD:** See cloudflare-proxy-solution.md
+
 # EMERGENCY CLOUDFLARE REDIRECT SOLUTION
 **Date:** January 27, 2025  
 **Issue:** Replit domain verification failed for 4+ days  

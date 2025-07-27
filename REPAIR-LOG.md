@@ -91,6 +91,8 @@ Customer approved secure proxy solution to bypass Replit's broken domain system
 - ❌ ROUTE ERROR: "Route pattern must include zone name" 
 - 🔧 FIX: Change pattern from *.turboratenow.net/* to turboratenow.net/*
 - 💾 RETRY: Remove leading asterisk and save again
+- ❌ STILL FAILING: Same "Route pattern must include zone name" error
+- 🔄 ALTERNATIVE: Try *turboratenow.net/* or remove CNAME record first
 - 🎯 RESULT: turboratenow.net will serve landing page without exposing worker subdomain
 - 🗑️ CLEANUP: Can delete old turboratenow-proxy worker after route works
 

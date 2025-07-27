@@ -5,24 +5,29 @@
 ✓ Server routing configured for turboratenow.net
 ✓ DNS records already configured in Cloudflare
 
-## Steps to Connect Domain
+## IMMEDIATE NEXT STEPS
 
-### 1. Access Replit Domain Management
-- Go to your Replit dashboard
-- Click on this project (cpa-bridge-booster-project)
-- Look for "Domains" or "Custom Domain" in the settings
-
-### 2. Add Custom Domain
+### 1. Connect Domain in Replit (DO THIS NOW)
+- Go to your Replit project: cpa-bridge-booster-project
+- Click the "Deploy" tab or look for "Domains" section
 - Click "Add Custom Domain" or "Connect Domain"
 - Enter: `turboratenow.net`
-- Choose "I'll configure DNS myself" (since you already have Cloudflare)
+- Select "Manual DNS Configuration" (since Cloudflare is already set)
 
-### 3. Required DNS Records (Already Done)
-Based on your documentation, these should already be set in Cloudflare:
+### 2. Verification Will Be Instant
+Since your DNS records are perfect, Replit should verify immediately:
+- TXT record already contains replit-verify code
+- A record points to correct Replit IP
+- Verification should complete in under 5 minutes
+
+### 3. DNS Records Status: ✓ PERFECTLY CONFIGURED
+Your Cloudflare DNS records are correctly set:
 ```
-A Record: turboratenow.net → 34.111.179.208
-TXT Record: replit-verify → [verification code]
+✓ TXT Record: turboratenow... → "replit-verify=4..."
+✓ A Record: turboratenow... → 34.111.179.208  
+✓ A Record: www → 34.111.179.208
 ```
+All DNS records are correct and ready for Replit verification.
 
 ### 4. Verification Process
 - Replit will verify the DNS records

@@ -20,9 +20,13 @@
 - **Always Use HTTPS**: Enable this setting
 
 ### Step 3: Force HTTPS Redirect
-1. Go to "SSL/TLS" → "Edge Certificates"
-2. Enable "Always Use HTTPS"
-3. This forces HTTP → HTTPS redirect
+**CURRENT STATUS:** SSL mode is "Full" ✅
+**NEXT ACTION:** Enable "Always Use HTTPS"
+
+1. In the SSL/TLS Overview page, scroll down
+2. Look for "Always Use HTTPS" toggle
+3. Enable this setting
+4. OR go to "SSL/TLS" → "Edge Certificates" → Enable "Always Use HTTPS"
 
 ### Step 4: Universal SSL
 - Should be enabled by default

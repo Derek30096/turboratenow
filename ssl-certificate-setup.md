@@ -23,10 +23,10 @@
 **CURRENT STATUS:** SSL mode is "Full" ✅
 **NEXT ACTION:** Enable "Always Use HTTPS"
 
-1. In the SSL/TLS Overview page, scroll down
-2. Look for "Always Use HTTPS" toggle
-3. Enable this setting
-4. OR go to "SSL/TLS" → "Edge Certificates" → Enable "Always Use HTTPS"
+1. ✅ FOUND: "Always Use HTTPS" toggle on Edge Certificates page
+2. 👆 CLICK: Toggle currently shows "X" (disabled)
+3. 🎯 ACTION: Click the toggle to enable HTTPS redirect
+4. ✅ RESULT: Will automatically redirect HTTP → HTTPS
 
 ### Step 4: Universal SSL
 - Should be enabled by default

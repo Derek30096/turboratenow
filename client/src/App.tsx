@@ -1,46 +1,99 @@
-import { Switch, Route } from "wouter";
-import { queryClient } from "./lib/queryClient";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import Home from "@/pages/home";
-import Analytics from "@/pages/analytics";
-import ProtectedTracking from "@/pages/protected-tracking";
-import NotFound from "@/pages/not-found";
-
-function Router() {
-  return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/admin/dashboard" component={ProtectedTracking} />
-      <Route path="/tracking" component={NotFound} />
-      <Route path="*" component={NotFound} />
-    </Switch>
-  );
-}
-
+// Minimal App for debugging
 function App() {
   console.log('🎨 App component rendering...');
   
-  try {
-    return (
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
-      </QueryClientProvider>
-    );
-  } catch (error) {
-    console.error('❌ App render error:', error);
-    return (
-      <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', background: 'white', color: 'black', minHeight: '100vh' }}>
-        <h1 style={{ color: '#007BFF' }}>Most Drivers Overpay $437/Year on Auto Insurance</h1>
-        <p>React App Error - Check console</p>
-        <p style={{ color: 'red', fontSize: '14px' }}>Error: {error instanceof Error ? error.message : String(error)}</p>
+  return (
+    <div style={{ 
+      minHeight: '100vh', 
+      background: 'linear-gradient(135deg, #007BFF 0%, #0056b3 100%)', 
+      color: 'white',
+      fontFamily: 'Arial, sans-serif',
+      padding: '40px 20px',
+      textAlign: 'center'
+    }}>
+      {/* Red urgency header */}
+      <div style={{
+        background: 'linear-gradient(135deg, #dc3545, #c82333)',
+        color: 'white',
+        padding: '8px 16px',
+        margin: '-40px -20px 40px -20px',
+        fontSize: '14px',
+        fontWeight: 'bold'
+      }}>
+        ⚡ Limited Time: Insurance Rates Going Up - Compare NOW!
       </div>
-    );
-  }
+
+      {/* Main content */}
+      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <h1 style={{ 
+          fontSize: '48px', 
+          fontWeight: 'bold', 
+          marginBottom: '20px',
+          lineHeight: '1.2'
+        }}>
+          Most Drivers Overpay $437/Year on Auto Insurance
+        </h1>
+        
+        <p style={{ 
+          fontSize: '24px', 
+          marginBottom: '40px',
+          opacity: '0.9'
+        }}>
+          Compare Top Providers & Save Big in Under 60 Seconds
+        </p>
+
+        {/* Yellow Mercedes image placeholder */}
+        <div style={{
+          width: '400px',
+          height: '250px',
+          background: 'rgba(255,255,255,0.1)',
+          margin: '20px auto',
+          borderRadius: '12px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '18px'
+        }}>
+          🚗 Mercedes Car Image
+        </div>
+
+        {/* Orange CTA button */}
+        <button 
+          onClick={() => {
+            console.log('CTA clicked - redirecting to MaxBounty');
+            window.location.href = 'https://afflat3e1.com/trk/lnk/E9FE846C-D650-4A23-A71F-1A020485FDAD/?o=22134&c=918277&a=713051&k=BD87E19173921A7698931850BC9E82E2&l=22980';
+          }}
+          style={{
+            background: '#FF6B35',
+            color: 'white',
+            padding: '20px 40px',
+            fontSize: '20px',
+            fontWeight: 'bold',
+            border: 'none',
+            borderRadius: '50px',
+            cursor: 'pointer',
+            boxShadow: '0 8px 20px rgba(255,107,53,0.3)',
+            margin: '20px',
+            transition: 'all 0.3s ease'
+          }}
+          onMouseOver={(e) => {
+            e.target.style.background = '#e55a2b';
+            e.target.style.transform = 'translateY(-2px)';
+          }}
+          onMouseOut={(e) => {
+            e.target.style.background = '#FF6B35';
+            e.target.style.transform = 'translateY(0)';
+          }}
+        >
+          🚨 Get My Free Quote - Save $437+ Now!
+        </button>
+
+        <p style={{ fontSize: '14px', opacity: '0.8', marginTop: '20px' }}>
+          ✓ Free • ✓ No Obligation • ✓ Instant Results • ✓ 100% Secure
+        </p>
+      </div>
+    </div>
+  );
 }
 
 export default App;

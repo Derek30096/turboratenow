@@ -1,6 +1,5 @@
 import { createRoot } from "react-dom/client";
 import App from "./App";
-import "./index.css";
 
 console.log('🚀 main.tsx loading...');
 
@@ -9,7 +8,10 @@ console.log('📍 Root element:', root);
 
 if (root) {
   try {
-    // Hide fallback content once React is ready
+    // Clear the root content completely
+    root.innerHTML = '';
+    
+    // Hide fallback content
     const fallback = document.getElementById('fallback');
     if (fallback) {
       fallback.style.display = 'none';
@@ -25,9 +27,23 @@ if (root) {
   } catch (error) {
     console.error('❌ Render error:', error);
     document.title = "❌ React Error - " + document.title;
-    // Don't override content, let fallback stay visible
+    
+    // Show error in root
+    root.innerHTML = `
+      <div style="padding: 40px; background: white; color: black; font-family: Arial;">
+        <h1 style="color: #007BFF;">React Error</h1>
+        <p>Error: ${error.message}</p>
+        <p>Check console for details</p>
+      </div>
+    `;
   }
 } else {
   console.error('❌ Root element not found');
   document.title = "❌ No Root - " + document.title;
+  document.body.innerHTML = `
+    <div style="padding: 40px; background: white; color: black; font-family: Arial;">
+      <h1 style="color: red;">Root Element Not Found</h1>
+      <p>The #root element is missing from the HTML</p>
+    </div>
+  `;
 }

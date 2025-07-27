@@ -20,6 +20,8 @@ function Router() {
 }
 
 function App() {
+  console.log('🎨 App component rendering...');
+  
   try {
     return (
       <QueryClientProvider client={queryClient}>
@@ -30,11 +32,12 @@ function App() {
       </QueryClientProvider>
     );
   } catch (error) {
-    console.error('App render error:', error);
+    console.error('❌ App render error:', error);
     return (
-      <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-        <h1>Most Drivers Overpay $437/Year on Auto Insurance</h1>
-        <p>Loading...</p>
+      <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', background: 'white', color: 'black', minHeight: '100vh' }}>
+        <h1 style={{ color: '#007BFF' }}>Most Drivers Overpay $437/Year on Auto Insurance</h1>
+        <p>React App Error - Check console</p>
+        <p style={{ color: 'red', fontSize: '14px' }}>Error: {error.message}</p>
       </div>
     );
   }

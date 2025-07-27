@@ -20,11 +20,20 @@ const targetUrl = 'https://cpa-bridge-booster-project.replit.app'
 const targetUrl = 'https://84558308-661e-4d2e-89a3-c392a1fd57a3-00-2phr21a0sgnke.spock.replit.dev'
 ```
 
+## CURRENT ISSUE - Connection Timeout (Error 522)
+The Replit development URL likely changed when server restarted.
+
 ## STEPS TO FIX
-1. Go back to Cloudflare worker editor
-2. Change line 7 to use the Replit dev URL (from logs)
+1. Check current server logs for new URL
+2. Update worker line 7 with current URL from logs
 3. Deploy updated worker
-4. Test again
+4. Test domain again
+
+## SOLUTION: Use Production URL Instead
+Better solution: Use the stable production URL instead of development URL:
+```javascript
+const targetUrl = 'https://cpa-bridge-booster-project.replit.app'
+```
 
 ## EXPLANATION
 Replit apps can have multiple URL formats:

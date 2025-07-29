@@ -21,13 +21,42 @@ export async function createAppServer() {
   
   const server = createServer(app);
 
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
-  if (process.env.NODE_ENV === "development") {
-    await setupVite(app, server);
+  // For production, check if dist/public exists and serve it
+  if (process.env.NODE_ENV === "production") {
+    console.log("🚀 Starting production mode");
+    
+    // Import required modules for production
+    const fs = await import("fs");
+    const path = await import("path");
+    
+    const distPath = path.resolve(import.meta.dirname, "..", "dist", "public");
+    console.log(`📁 Looking for build files at: ${distPath}`);
+    
+    if (fs.existsSync(distPath)) {
+      console.log("✅ Found build directory, serving static files");
+      
+      // Serve static files
+      app.use(express.static(distPath, {
+        maxAge: 0,
+        setHeaders: (res) => {
+          res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+          res.setHeader('Pragma', 'no-cache');
+          res.setHeader('Expires', '0');
+        }
+      }));
+      
+      // Serve React app for all other routes
+      app.use("*", (_req, res) => {
+        console.log(`🎯 Serving React app from: ${path.resolve(distPath, "index.html")}`);
+        res.sendFile(path.resolve(distPath, "index.html"));
+      });
+    } else {
+      console.log("❌ Build directory not found, falling back to development mode");
+      await setupVite(app, server);
+    }
   } else {
-    serveStatic(app);
+    console.log("🔧 Starting development mode");
+    await setupVite(app, server);
   }
 
   return server;

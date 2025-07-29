@@ -21,8 +21,11 @@ export async function createAppServer() {
   
   const server = createServer(app);
 
+  // Check if we should serve production build for domain
+  const shouldServeProduction = process.env.NODE_ENV === "production" || process.env.SERVE_PRODUCTION === "true";
+  
   // For production, check if dist/public exists and serve it
-  if (process.env.NODE_ENV === "production") {
+  if (shouldServeProduction) {
     console.log("🚀 Starting production mode");
     
     // Import required modules for production

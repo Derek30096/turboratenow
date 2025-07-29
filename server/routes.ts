@@ -4,26 +4,6 @@ import { storage } from "./storage";
 export const router = express.Router();
 
 export function registerRoutes(app: express.Application) {
-  // DOMAIN FIX: Direct route handler for turboratenow.com
-  app.get('/', (req, res, next) => {
-    const hostname = req.get('host') || req.hostname;
-    
-    if (hostname === 'turboratenow.com' || hostname === 'www.turboratenow.com') {
-      console.log(`🎯 SERVING DOMAIN: ${hostname} -> React App`);
-      
-      // Force no caching for domain requests
-      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-      res.setHeader('Pragma', 'no-cache');
-      res.setHeader('Expires', '0');
-      
-      // Let the static/Vite handler serve the React app
-      next();
-    } else {
-      // Regular replit domain handling
-      next();
-    }
-  });
-
   // Health check endpoint for Replit
   app.get('/health', (req, res) => {
     res.status(200).json({ status: 'OK', message: 'Server is running' });

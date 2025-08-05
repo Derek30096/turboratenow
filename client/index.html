@@ -1,58 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>TurboRateNow</title>
-    <meta name="description" content="Get your free auto insurance quote and compare top rates in under a minute." />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Facebook Pixel Code -->
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src='https://connect.facebook.net/en_US/fbevents.js';
-      s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script');
-      fbq('init', '1159201115616282');
-      fbq('track', 'PageView');
-    </script>
-    <!-- End Facebook Pixel Code -->
-  </head>
-  <body style="background: white !important; color: black !important; margin: 0; padding: 0; font-family: Arial, sans-serif;">
-    <!-- Facebook Pixel Noscript -->
-    <noscript>
-      <img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=1159201115616282&ev=PageView&noscript=1"/>
-    </noscript>
-    
-    <noscript>
-      <div style="padding: 40px; text-align: center; background: white; color: black; min-height: 100vh;">
-        <h1 style="color: #007BFF; font-size: 32px; margin-bottom: 20px;">Most Drivers Overpay $437/Year</h1>
-        <p style="font-size: 20px; color: #333; margin-bottom: 30px;">Compare auto insurance rates and save big in under 60 seconds!</p>
-        <a href="https://t.maxbounty.com/54949" style="background: #007BFF; color: white; padding: 20px 40px; text-decoration: none; border-radius: 8px; font-size: 20px; font-weight: bold; display: inline-block;">Get Free Quote Now</a>
-      </div>
-    </noscript>
-    
-    <div id="root" style="min-height: 100vh; background: white !important;"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
-    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
-    
-    <script>
-      // Force white background
-      document.documentElement.style.background = 'white';
-      document.body.style.background = 'white';
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TurboRateNow</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #333, #222);
+      color: white;
+      text-align: center;
+      padding: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1.25rem;
+      margin: 0 0 2rem 0;
+      max-width: 80%;
+    }
+
+    .cta-btn {
+      background-color: #ff5c00;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.25rem;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      background-color: #e44e00;
+    }
+
+    .countdown {
+      margin-top: 1.5rem;
+      font-size: 1.25rem;
+      color: #ffd000;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      font-size: 0.9rem;
+      color: #bbb;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Still Overpaying for Auto Insurance?</h1>
+    <p>Compare 50+ providers and see how much you can save. It only takes 60 seconds.</p>
+    <a class="cta-btn" href="https://afflat3e1.com/trk/lnk/E9FE846C-D650-4A23-A71F-1A020485FDAD/?o=22134&c=918277&a=713051&k=BD87E19173921A7698931850BC9E82E2&l=22980" target="_blank">Get My Free Quote →</a>
+    <div class="countdown" id="countdown">5 seconds remaining</div>
+  </div>
+  <footer>
+    This site is not affiliated with any insurance company. All rights reserved.
+  </footer>
+
+  <script>
+    let countdown = 5;
+    const countdownEl = document.getElementById('countdown');
+
+    const interval = setInterval(() => {
+      countdown--;
+      countdownEl.textContent = countdown + ' seconds remaining';
+
+      if (countdown <= 0) {
+        clearInterval(interval);
+        window.location.href = "https://afflat3e1.com/trk/lnk/E9FE846C-D650-4A23-A71F-1A020485FDAD/?o=22134&c=918277&a=713051&k=BD87E19173921A7698931850BC9E82E2&l=22980";
+      }
+    }, 1000);
+  </script>
+</body>
 </html>

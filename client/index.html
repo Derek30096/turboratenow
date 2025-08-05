@@ -1,111 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TurboRateNow</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TurboRateNow - Auto Insurance Savings</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom right, #333, #222);
-      color: white;
+      background-color: #f9f9f9;
+      color: #111;
       text-align: center;
-      padding: 0;
-    }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      padding: 60px 20px;
     }
 
     h1 {
-      font-size: 2em;
-      margin-bottom: 10px;
+      font-size: 2.5rem;
+      color: #111;
     }
 
     p {
-      font-size: 1.2em;
-      margin-top: 0;
+      font-size: 1.2rem;
+      color: #333;
+      margin-top: 10px;
     }
 
     .cta-button {
       background-color: #ff5c00;
       color: white;
       padding: 15px 30px;
-      font-size: 1.2em;
+      font-size: 18px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      margin-top: 20px;
-      text-decoration: none;
-      display: inline-block;
+      margin-top: 30px;
     }
 
-    .cta-button:hover {
-      background-color: #e64a00;
-    }
-
-    #countdown {
-      font-size: 1.5em;
-      margin-top: 20px;
-      color: gold;
-    }
-
-    .disclaimer {
-      font-size: 0.9em;
-      margin-top: 60px;
-      color: #ccc;
-    }
-
-    .trust-badges {
-      margin-top: 20px;
+    .security-logos {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      align-items: center;
+      gap: 30px;
+      margin: 25px 0;
     }
 
-    .trust-badges img {
-      height: 30px;
+    .security-logos img {
+      height: 40px;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #666;
     }
   </style>
-
-  <script>
-    let countdown = 5;
-    function updateCountdown() {
-      document.getElementById("countdown").textContent = countdown + " seconds remaining";
-      if (countdown === 0) {
-        window.location.href = "https://afflat3e1.com/trk/lnk/E9FE846C-D650-4A23-A71F-1A020485FDAD/?o=22134&c=918277&a=713051&k=BD87E19173921A7698931850BC9E82E2&l=22980";
-      } else {
-        countdown--;
-        setTimeout(updateCountdown, 1000);
-      }
-    }
-    window.onload = updateCountdown;
-  </script>
 </head>
-
 <body>
-  <div class="container">
-    <h1>Still Overpaying for Auto Insurance?</h1>
-    <p>Compare 50+ providers and see how much you can save. It only takes 60 seconds.</p>
-    <a class="cta-button" href="https://afflat3e1.com/trk/lnk/E9FE846C-D650-4A23-A71F-1A020485FDAD/?o=22134&c=918277&a=713051&k=BD87E19173921A7698931850BC9E82E2&l=22980">
-      Get My Free Quote →
-    </a>
 
-    <!-- Trust Badges -->
-    <div class="trust-badges">
-      <img src="https://img.icons8.com/fluency/48/000000/security-checked.png" alt="SSL Secure" title="SSL Secured" />
-      <img src="https://img.icons8.com/color/48/000000/mcafee.png" alt="McAfee" title="McAfee Protected" />
-      <img src="https://img.icons8.com/color/48/000000/norton-antivirus.png" alt="Norton" title="Norton Secured" />
-    </div>
+  <h1>Still Overpaying for Auto Insurance?</h1>
+  <p>Compare 50+ providers and see how much you can save. It only takes 60 seconds.</p>
 
-    <div id="countdown">5 seconds remaining</div>
-    <div class="disclaimer">This site is not affiliated with any insurance company. All rights reserved.</div>
+  <button class="cta-button" onclick="window.location.href='https://yourcpaoffer.com';">
+    Get My Free Quote →
+  </button>
+
+  <div class="security-logos">
+    <img src="https://img.icons8.com/color/48/macafee.png" alt="McAfee Secure" />
+    <img src="https://img.icons8.com/color/48/norton-antivirus.png" alt="Norton Secure" />
   </div>
+
+  <div class="footer">
+    This site is not affiliated with any insurance company. All rights reserved.
+  </div>
+
 </body>
 </html>

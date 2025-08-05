@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TurboRateNow</title>
   <style>
     body {
@@ -23,70 +23,89 @@
     }
 
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      font-size: 2em;
+      margin-bottom: 10px;
     }
 
     p {
-      font-size: 1.25rem;
-      margin: 0 0 2rem 0;
-      max-width: 80%;
+      font-size: 1.2em;
+      margin-top: 0;
     }
 
-    .cta-btn {
+    .cta-button {
       background-color: #ff5c00;
       color: white;
-      padding: 1rem 2rem;
-      font-size: 1.25rem;
+      padding: 15px 30px;
+      font-size: 1.2em;
       border: none;
-      border-radius: 6px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
       text-decoration: none;
-      transition: background 0.3s ease;
+      display: inline-block;
     }
 
-    .cta-btn:hover {
-      background-color: #e44e00;
+    .cta-button:hover {
+      background-color: #e64a00;
     }
 
-    .countdown {
-      margin-top: 1.5rem;
-      font-size: 1.25rem;
-      color: #ffd000;
+    #countdown {
+      font-size: 1.5em;
+      margin-top: 20px;
+      color: gold;
     }
 
-    footer {
-      position: absolute;
-      bottom: 15px;
-      width: 100%;
-      font-size: 0.9rem;
-      color: #bbb;
+    .disclaimer {
+      font-size: 0.9em;
+      margin-top: 60px;
+      color: #ccc;
+    }
+
+    .trust-badges {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .trust-badges img {
+      height: 30px;
     }
   </style>
+
+  <script>
+    let countdown = 5;
+    function updateCountdown() {
+      document.getElementById("countdown").textContent = countdown + " seconds remaining";
+      if (countdown === 0) {
+        window.location.href = "https://afflat3e1.com/trk/lnk/E9FE846C-D650-4A23-A71F-1A020485FDAD/?o=22134&c=918277&a=713051&k=BD87E19173921A7698931850BC9E82E2&l=22980";
+      } else {
+        countdown--;
+        setTimeout(updateCountdown, 1000);
+      }
+    }
+    window.onload = updateCountdown;
+  </script>
 </head>
+
 <body>
   <div class="container">
     <h1>Still Overpaying for Auto Insurance?</h1>
     <p>Compare 50+ providers and see how much you can save. It only takes 60 seconds.</p>
-    <a class="cta-btn" href="https://afflat3e1.com/trk/lnk/E9FE846C-D650-4A23-A71F-1A020485FDAD/?o=22134&c=918277&a=713051&k=BD87E19173921A7698931850BC9E82E2&l=22980" target="_blank">Get My Free Quote →</a>
-    <div class="countdown" id="countdown">5 seconds remaining</div>
+    <a class="cta-button" href="https://afflat3e1.com/trk/lnk/E9FE846C-D650-4A23-A71F-1A020485FDAD/?o=22134&c=918277&a=713051&k=BD87E19173921A7698931850BC9E82E2&l=22980">
+      Get My Free Quote →
+    </a>
+
+    <!-- Trust Badges -->
+    <div class="trust-badges">
+      <img src="https://img.icons8.com/fluency/48/000000/security-checked.png" alt="SSL Secure" title="SSL Secured" />
+      <img src="https://img.icons8.com/color/48/000000/mcafee.png" alt="McAfee" title="McAfee Protected" />
+      <img src="https://img.icons8.com/color/48/000000/norton-antivirus.png" alt="Norton" title="Norton Secured" />
+    </div>
+
+    <div id="countdown">5 seconds remaining</div>
+    <div class="disclaimer">This site is not affiliated with any insurance company. All rights reserved.</div>
   </div>
-  <footer>
-    This site is not affiliated with any insurance company. All rights reserved.
-  </footer>
-
-  <script>
-    let countdown = 5;
-    const countdownEl = document.getElementById('countdown');
-
-    const interval = setInterval(() => {
-      countdown--;
-      countdownEl.textContent = countdown + ' seconds remaining';
-
-      if (countdown <= 0) {
-        clearInterval(interval);
-        window.location.href = "https://afflat3e1.com/trk/lnk/E9FE846C-D650-4A23-A71F-1A020485FDAD/?o=22134&c=918277&a=713051&k=BD87E19173921A7698931850BC9E82E2&l=22980";
-      }
-    }, 1000);
-  </script>
 </body>
 </html>
